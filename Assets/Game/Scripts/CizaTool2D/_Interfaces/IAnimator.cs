@@ -1,9 +1,18 @@
+using System.Linq.Expressions;
+
 namespace CizaTools2D
 {
     public interface IAnimator
     {
-        public string GetAnimName();
+        public string GetName(int index);
         
-        public void PlayAnim(string name, bool loop, float timeScale, int layer);
+        public float GetTime(int index);
+
+        public float GetNormalizeTime(int index);
+
+        public void Play(int index, string name, bool loop, float timeScale);
+        public void PlayAtTime(int index, float time,string name, bool loop, float timeScale);
+        
+        public void PlayAtNormalizeTime(int index, float normalizeTime,string name, bool loop, float timeScale);
     }
 }
