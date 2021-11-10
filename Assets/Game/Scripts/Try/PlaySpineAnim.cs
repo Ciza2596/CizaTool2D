@@ -1,162 +1,75 @@
-using System;
+
 using UnityEngine;
-using CizaTools2D;
+using Spine.Unity;
+using Spine;
 
 namespace Try
 {
     public class PlaySpineAnim : MonoBehaviour
     {
-        [SerializeField] private GameObject _facades;
+        public SkeletonAnimation _anim;
+        
+        [Space]
+        
+        [SpineAnimation]
+        [SerializeField]
+        private string _idle;              //2
+        
+        [SpineAnimation]
+        [SerializeField]
+        private string _rangedBackground;  //1
+        
+        [SpineAnimation]
+        [SerializeField]
+        private string _meleeBackground;   //0
+        
+        [Space]
+        [SpineAnimation]
+        [SerializeField]
+        private string _meleeAttack;
+        
+        [SpineAnimation]
+        [SerializeField]
+        private string _meleeNonBackground;
 
-        [SerializeField] private bool _hold;
 
-        [SerializeField] private Settings _settings;
-
-        private IAnimator _animator;
-
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-            _animator = _facades.GetComponent<IAnimator>();
-
-            _animator.Play(0,_settings.Main.name, true, 1f );
+            _anim.state.SetAnimation(2, _idle, true);
+            
+            _anim.state.SetAnimation(1, _rangedBackground, true);
+            _anim.state.SetAnimation(0, _meleeBackground, true);
         }
 
-        //0: 基本動作，1: 進戰武器，2: 遠程武器，3: 表情
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            /*
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                
-                        
-                _animator.Play(0, "Move_Walk", true, 0.1f); 
+                _anim.state.SetAnimation(0, _meleeNonBackground, true);
+                _anim.state.SetAnimation(2, _meleeAttack, true);
             }
-            else if(Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.W))
             {
-                
-                
-                _animator.Play(0, "Move_Run", true, 0.1f); 
+                _anim.state.SetAnimation(0, _meleeBackground, true);
+                _anim.state.SetAnimation(2, _idle, true);
             }
-            else if(Input.GetKeyDown(KeyCode.Z))
-            {
-                
-                
-                _animator.Play(0, "Move_Rush", true, 0.1f);
-            } */
-            
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                float normlizeTime = _animator.GetNormalizeTime(0);
-                string name = _animator.GetName(0);
-                
-                if (name == "Move_Run" || name == "Move_Rush")
-                    normlizeTime /=2;
-                        
-                _animator.PlayAtNormalizeTime(0, normlizeTime,"Move_Walk", true, 1); 
-            }
-            else if(Input.GetKeyDown(KeyCode.A))
-            {
-                float normlizeTime = _animator.GetNormalizeTime(0);
-                string name = _animator.GetName(0);
-                
-                if (name == "Move_Walk")
-                    normlizeTime *= 2;
-                
-                _animator.PlayAtNormalizeTime(0, normlizeTime,"Move_Run", true, 1); 
-            }
-            else if(Input.GetKeyDown(KeyCode.Z))
-            {
-                float normlizeTime = _animator.GetNormalizeTime(0);
-                string name = _animator.GetName(0);
-                
-                if (name == "Move_Walk")
-                    normlizeTime *= 2;
-                
-                _animator.PlayAtNormalizeTime(0, normlizeTime,"Move_Rush", true, 1);
-            }
+            else if(Input.GetKeyDown(KeyCode.E))
+                Debug.Log( GetName(0));
 
-
-            /*
-            if (Input.GetKeyDown(KeyCode.Q))
-                _animator.Play(1,"Sword_Background", true, 0.5f); 
-            
-            Debug.Log(_animator.GetNormalizeTime(0));
-            
-            if (Input.GetKeyDown(KeyCode.Mouse1) && !_hold)
-                _hold = true;
-
-            if (Input.GetKeyUp(KeyCode.Mouse1) && _hold)
-                _hold = false;
-            
-            if (Input.GetKeyUp(KeyCode.Mouse0) && _hold)
-                _animator.Play(2,"Gatling_Shooting", true, 0.1f);
-
-            if (_hold)
-            {
-                if (_animator.GetName(0) == "Gun_Walk") return;
-                
-                float normlizeTime = _animator.GetNormalizeTime(0);
-                
-                _animator.PlayAtNormalizeTime(0, normlizeTime,"Gun_Walk", true, 1f);
-                _animator.Play(2, "Gatling_Idle", true, 1f);
-                //_animator.SetAnim("Default-Face-Wink",true,3);
-            }
-            else
-            {
-                if (_animator.GetName(0) != _settings.Main.name)
-                {
-                    float currentTime = _animator.GetTime(0);
-                    _animator.PlayAtTime(0,currentTime, _settings.Main.name, true, 1f);  
-                }
-
-                if (_animator.GetName(2) != "Gatling_Background")
-                    _animator.Play(2,"Gatling_Background", true, 1);  
-            }
-            /*
-             if(Input.GetKeyDown(KeyCode.Mouse0))
-                 _animator.SetAnim("Sword_Attack_A1", false, 1);
-                 //_animator.PlayAnim("Sword_Attack_A1", false, _settings.Main.timeScale);
- 
- 
- 
-             if (Input.GetKeyDown(KeyCode.Q))
-                 _animator.SetAnim("Sword_Background", true, 1);
-             if (Input.GetKeyDown(KeyCode.A))
-                 _animator.ClearTrack(1);
- 
-             if (Input.GetKeyDown(KeyCode.E))
-                 _animator.SetAnim("Gatling_Background", true, 2);
-             if (Input.GetKeyDown(KeyCode.D))
-                 _animator.SetAnim("Flamethrower_Background", true, 2);      */
         }
-
-        [Serializable]
-        public class Settings
+        
+        public string GetName(int index)
         {
-            public Main Main;
-            public Sub Sub;
-            public Equip Equip;
-        }
+            TrackEntry track =  _anim.state.GetCurrent(index);
 
-        [Serializable]
-        public class Main
-        {
-            public string name;
-            public float timeScale = 1;
-        }
-
-        [Serializable]
-        public class Sub
-        {
-            public string name;
-        }
-
-        [Serializable]
-        public class Equip
-        {
-            public string name;
+            string name = 
+                (track != null) ? 
+                    track.Animation.Name : "Null";
+            
+            if(name == "Null") 
+                Debug.Log($"anim index is {index} and null");
+            
+            return name;
         }
     }
 }
