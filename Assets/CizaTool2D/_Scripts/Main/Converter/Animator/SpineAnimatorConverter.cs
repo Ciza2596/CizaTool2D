@@ -62,6 +62,12 @@ namespace CizaTool2D.Converter {
             track.TrackTime = 0;
         }
 
+        public bool GetIsCurrentState(int index, string currentStateName) => throw new System.NotImplementedException();
+
+        public bool GetIsTagCurrentState(int index, string tagName) => throw new System.NotImplementedException();
+
+        public float GetCurrentNormalizeTime(int index) => throw new System.NotImplementedException();
+
         public void Play(int index, string name, bool loop, float timeScale) {
             //確認目前已播放想同動畫
             if (GetName (index) == name) return;

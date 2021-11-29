@@ -7,7 +7,7 @@ namespace CizaTool2D.BehaviourTree.Option.Anim
 
         public string _animStateName;
 
-        public override bool GetBool() => _data.Animator.GetIsClipNotNull(_animStateName);
+        public override bool GetBool() => true; //_data.Animator.GetIsClipNotNull(_animStateName);
     } 
 }
 

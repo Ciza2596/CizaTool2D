@@ -126,36 +126,38 @@ namespace ZoeProject
 
         private float NormalizeTimeForRushAndRun(string rushOrRunName)
         {
-            string name = _animator.GetName(0);
-            float normalizeTime = 0;
-
-            if (name == rushOrRunName)
-            {
-                normalizeTime = _animator.GetNormalizeTime(0);
-            }
-            else if (name == _playerMovesSettings.Walk.Anim.Name)
-            {
-                normalizeTime = _animator.GetNormalizeTime(0);
-                normalizeTime *=2;
-            }
-
-            return normalizeTime;
+            // string name = _animator.GetName(0);
+            // float normalizeTime = 0;
+            //
+            // if (name == rushOrRunName)
+            // {
+            //     normalizeTime = _animator.GetNormalizeTime(0);
+            // }
+            // else if (name == _playerMovesSettings.Walk.Anim.Name)
+            // {
+            //     normalizeTime = _animator.GetNormalizeTime(0);
+            //     normalizeTime *=2;
+            // }
+            //
+            // return normalizeTime;
+            return 0;
         }
 
         private float NormalizeTimeForWalk()
         {
-            //走路
-            string name = _animator.GetName(0);
-            float normalizeTime = 0;
-
-            if (name == _playerMovesSettings.Rush.Anim.Name 
-                || name == _playerMovesSettings.Run.Anim.Name)
-            {
-                normalizeTime = _animator.GetNormalizeTime(0);
-                normalizeTime /=2;
-            }
-
-            return normalizeTime;
+            // //走路
+            // string name = _animator.GetName(0);
+            // float normalizeTime = 0;
+            //
+            // if (name == _playerMovesSettings.Rush.Anim.Name 
+            //     || name == _playerMovesSettings.Run.Anim.Name)
+            // {
+            //     normalizeTime = _animator.GetNormalizeTime(0);
+            //     normalizeTime /=2;
+            // }
+            //
+            // return normalizeTime;
+            return 0;
         }
 
         #endregion
