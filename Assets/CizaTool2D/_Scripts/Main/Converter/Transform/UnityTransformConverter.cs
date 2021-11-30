@@ -4,181 +4,90 @@ namespace CizaTool2D.Converter
 {
     public class UnityTransformConverter : MonoBehaviour, ITransform
     {
+    #region - Base -
+
         [SerializeField] private Transform _transform;
 
-        // Position
+        public void Init(Transform transform) =>
+            _transform = transform;
 
-        #region - GetPosition -
-
-        public float GetXPosition()
-        {
-            return _transform.position.x;
+        public bool GetIsTransformNull() {
+            return Utility.Utility.GetIsObjectNull(_transform,
+                                                   () => Debug.Log("Transform is null"));
         }
 
-        public float GetYPosition()
-        {
-            return _transform.position.y;
+    #endregion
+
+    #region - Position -
+
+        public Vector3 GetPosition() {
+            if(GetIsTransformNull())
+                return Vector3.zero;
+
+            return _transform.position;
         }
 
-        public float GetZPosition()
-        {
-            return _transform.position.z;
+        public void SetPosition(Vector3 position) {
+            if(GetIsTransformNull())
+                return;
+
+            _transform.position = position;
         }
 
-        #endregion
+    #endregion
 
-        #region - SetPosition -
+    #region - LocalPosition -
 
-        public void SetXPosition(float x)
-        {
-            var currentPos = _transform.position;
-            _transform.position = new Vector3(x, currentPos.y, currentPos.z);
+        public Vector3 GetLocalPosition() {
+            if(GetIsTransformNull())
+                return Vector3.zero;
+
+            return _transform.localPosition;
         }
 
-        public void SetYPosition(float y)
-        {
-            var currentPos = _transform.position;
-            _transform.position = new Vector3(currentPos.x, y, currentPos.z);
+        public void SetLocalPosition(Vector3 localPosition) {
+            if(GetIsTransformNull())
+                return;
+
+            _transform.localPosition = localPosition;
         }
 
-        public void SetZPosition(float z)
-        {
-            var currentPos = _transform.position;
-            _transform.position = new Vector3(currentPos.x, currentPos.y, z);
+    #endregion
+
+    #region - EulerAngles -
+
+        public Vector3 GetEulerAngles() {
+            if(GetIsTransformNull())
+                return Vector3.zero;
+
+            return _transform.eulerAngles;
         }
 
-        #endregion
-        
-        
-        // LocalPosition
+        public void SetEulerAngles(Vector3 eulerAngles) {
+            if(GetIsTransformNull())
+                return;
 
-        #region - GetLocalPosition -
-
-        public float GetXLocalPosition()
-        {
-            return _transform.localPosition.x;
+            _transform.eulerAngles = eulerAngles;
         }
 
-        public float GetYLocalPosition()
-        {
-            return _transform.localPosition.y;
+    #endregion
+
+    #region - LocalScale -
+
+        public Vector3 GetLocalScale() {
+            if(GetIsTransformNull())
+                return Vector3.zero;
+
+            return _transform.localScale;
         }
 
-        public float GetZLocalPosition()
-        {
-            return _transform.localPosition.z;
+        public void SetLocalScale(Vector3 localScale) {
+            if(GetIsTransformNull())
+                return;
+
+            _transform.localScale = localScale;
         }
 
-        #endregion
-
-        #region - SetLocalPosition -
-
-        public void SetXLocalPosition(float x)
-        {
-            var currentLocalPos = _transform.localPosition;
-            _transform.localPosition = new Vector3(x, currentLocalPos.y, currentLocalPos.z);
-        }
-                                                      
-        public void SetYLocalPosition(float y)
-        {
-            var currentLocalPos = _transform.localPosition;
-            _transform.localPosition = new Vector3(currentLocalPos.x, y, currentLocalPos.z);
-        }
-
-        public void SetZLocalPosition(float z)
-        {
-            var currentLocalPos = _transform.localPosition;
-            _transform.localPosition = new Vector3(currentLocalPos.x, currentLocalPos.y, z);
-        }
-
-        #endregion
-
-
-        // Rotation
-
-        #region - GetRotation -
-
-        public float GetXRotation()
-        {
-            return _transform.eulerAngles.x;
-        }
-
-        public float GetYRotation()
-        {
-            return _transform.eulerAngles.y;
-        }
-
-        public float GetZRotation()
-        {
-            return _transform.eulerAngles.z;
-        }
-
-        #endregion
-
-        #region - SetRotation -
-
-        public void SetXEulerRotation(float x)
-        {
-            var currentEulerRotation = _transform.eulerAngles;
-            _transform.eulerAngles = new Vector3(x, currentEulerRotation.y, currentEulerRotation.z);
-        }
-
-        public void SetYEulerRotation(float y)
-        {
-            var currentEulerRotation = _transform.eulerAngles;
-            _transform.eulerAngles = new Vector3(currentEulerRotation.x, y, currentEulerRotation.z);
-        }
-
-        public void SetZEulerRotation(float z)
-        {
-            var currentEulerRotation = _transform.eulerAngles;
-            _transform.eulerAngles = new Vector3(currentEulerRotation.x, currentEulerRotation.y, z);
-        }
-
-        #endregion
-
-
-        // LocalScale
-
-        #region - GetLocalScale -
-
-        public float GetXLocalScale()
-        {
-            return _transform.localScale.x;
-        }
-
-        public float GetYLocalScale()
-        {
-            return _transform.localScale.y;
-        }
-
-        public float GetZLocalScale()
-        {
-            return _transform.localScale.z;
-        }
-
-        #endregion
-
-        #region - SetLocalScale -
-
-        public void SetXLocalScale(float x)
-        { 
-            var currentLocalScale = _transform.localScale;
-            _transform.localScale = new Vector3(x, currentLocalScale.y, currentLocalScale.z);
-        }
-
-        public void SetYLocalScale(float y)
-        {
-            var currentLocalScale = _transform.localScale;
-            _transform.localScale = new Vector3(currentLocalScale.x, y, currentLocalScale.z);
-        }
-
-        public void SetZLocalScale(float z)
-        {
-            var currentLocalScale = _transform.localScale;
-            _transform.localScale = new Vector3(currentLocalScale.x, currentLocalScale.y, z);
-        }
-
-        #endregion
+    #endregion
     }
 }

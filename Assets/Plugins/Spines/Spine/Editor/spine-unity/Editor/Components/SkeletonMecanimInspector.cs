@@ -38,6 +38,7 @@ namespace Spine.Unity.Editor {
 	public class SkeletonMecanimInspector : SkeletonRendererInspector {
 		public static bool mecanimSettingsFoldout;
 
+		protected SerializedProperty animator;
 		protected SerializedProperty autoReset;
 		protected SerializedProperty useCustomMixMode;
 		protected SerializedProperty layerMixModes;
@@ -46,10 +47,11 @@ namespace Spine.Unity.Editor {
 		protected override void OnEnable () {
 			base.OnEnable();
 			SerializedProperty mecanimTranslator = serializedObject.FindProperty("translator");
-			autoReset = mecanimTranslator.FindPropertyRelative("autoReset");
+			animator         = mecanimTranslator.FindPropertyRelative("animator");
+			autoReset        = mecanimTranslator.FindPropertyRelative("autoReset");
 			useCustomMixMode = mecanimTranslator.FindPropertyRelative("useCustomMixMode");
-			layerMixModes = mecanimTranslator.FindPropertyRelative("layerMixModes");
-			layerBlendModes = mecanimTranslator.FindPropertyRelative("layerBlendModes");
+			layerMixModes    = mecanimTranslator.FindPropertyRelative("layerMixModes");
+			layerBlendModes  = mecanimTranslator.FindPropertyRelative("layerBlendModes");
 		}
 
 		protected override void DrawInspectorGUI (bool multi) {
@@ -60,7 +62,8 @@ namespace Spine.Unity.Editor {
 
 			using (new SpineInspectorUtility.BoxScope()) {
 				mecanimSettingsFoldout = EditorGUILayout.Foldout(mecanimSettingsFoldout, "Mecanim Translator");
-				if (mecanimSettingsFoldout) {
+				if (mecanimSettingsFoldout){
+					EditorGUILayout.PropertyField(animator);
 					EditorGUILayout.PropertyField(autoReset, new GUIContent("Auto Reset",
 						"When set to true, the skeleton state is mixed out to setup-" +
 						"pose when an animation finishes, according to the " +

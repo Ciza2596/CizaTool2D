@@ -1,98 +1,40 @@
+using UnityEngine;
+
 namespace CizaTool2D
 {
     public interface ITransform
     {
-        // Position
 
-        #region - GetPosition -
+    #region - Position -
 
-        public float GetXPosition();
-
-        public float GetYPosition();
-
-        public float GetZPosition();
-
-        #endregion
+        Vector3 GetPosition();
         
-        #region - SetPosition -
+        void SetPosition(Vector3 position);
 
-        public void SetXPosition(float x);
+    #endregion
 
-        public void SetYPosition(float y);
+    #region - LocalPosition -
 
-        public void SetZPosition(float z);
-
-        #endregion
-
+        Vector3 GetLocalPosition();
         
-        // LocalPosition
+        void SetLocalPosition(Vector3 localPosition);
 
-        #region - GetLocalPosition -
-
-        public float GetXLocalPosition();
-
-        public float GetYLocalPosition();
-
-        public float GetZLocalPosition();
-
-        #endregion
-
-        #region - SetLocalPosition -
-
-        public void SetXLocalPosition(float x);
-
-        public void SetYLocalPosition(float y);
-
-        public void SetZLocalPosition(float z);
-
-        #endregion
+    #endregion
         
-        
-        // Rotation
-        
-        #region - GetRotation -
+    #region - EulerAngles -
 
-        public float GetXRotation();
+        Vector3 GetEulerAngles();
 
-        public float GetYRotation();
+        void SetEulerAngles(Vector3 eulerAngles);
 
-        public float GetZRotation();
+    #endregion
 
-        #endregion
-        
-        #region - SetRotation -
+    #region - LocalScale -
 
-        public void SetXEulerRotation(float x);
+        Vector3 GetLocalScale();
 
-        public void SetYEulerRotation(float y);
+        void SetLocalScale(Vector3 localScale);
 
-        public void SetZEulerRotation(float z);
-
-        #endregion
-        
-        
-        // LocalScale
-        
-        #region - GetLocalScale -
-
-        public float GetXLocalScale();
-
-        public float GetYLocalScale();
-
-        public float GetZLocalScale();
-
-        #endregion
-
-        #region - SetLocalScale -
-
-        public void SetXLocalScale(float x);
-
-        public void SetYLocalScale(float y);
-
-        public void SetZLocalScale(float z);
-
-        #endregion
-        
-    }   
+    #endregion
+    }
 }
-    

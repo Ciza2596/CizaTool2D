@@ -12,11 +12,11 @@ namespace CizaTool2D.BehaviourTree.Action
 
         [SerializeField]
         private string _animStateName;
-
+                     /*
         public override void Execute() => _data.Animator.Play(0,
                                                               _animStateName,
                                                               false,
-                                                              1);
+                                                              1);  */
     }
     
 }

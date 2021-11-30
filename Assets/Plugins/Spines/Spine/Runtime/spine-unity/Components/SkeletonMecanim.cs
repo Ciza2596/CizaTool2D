@@ -31,13 +31,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace Spine.Unity {
-	[RequireComponent(typeof(Animator))]
+	//[RequireComponent(typeof(Animator))]
 	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonMecanim-Component")]
-	public class SkeletonMecanim : SkeletonRenderer, ISkeletonAnimation {
-
+	public class SkeletonMecanim : SkeletonRenderer, ISkeletonAnimation
+	{
+		
 		[SerializeField] protected MecanimTranslator translator;
-		public MecanimTranslator Translator { get { return translator; } }
-		private bool wasUpdatedAfterInit = true;
+		public                     MecanimTranslator Translator { get { return translator; } }
+		private                    bool              wasUpdatedAfterInit = true;
 
 		#region Bone Callbacks (ISkeletonAnimation)
 		protected event UpdateBonesDelegate _BeforeApply;
@@ -139,17 +140,18 @@ namespace Spine.Unity {
 			if (!wasUpdatedAfterInit) Update();
 			base.LateUpdate();
 		}
-
+		
 		[System.Serializable]
 		public class MecanimTranslator {
 
 			const float WeightEpsilon = 0.0001f;
 
 			#region Inspector
-			public bool autoReset = true;
-			public bool useCustomMixMode = true;
-			public MixMode[] layerMixModes = new MixMode[0];
-			public MixBlend[] layerBlendModes = new MixBlend[0];
+			public Animator   animator;
+			public                       bool       autoReset        = true;
+			public                       bool       useCustomMixMode = true;
+			public                       MixMode[]  layerMixModes    = new MixMode[0];
+			public                       MixBlend[] layerBlendModes  = new MixBlend[0];
 			#endregion
 
 			public delegate void OnClipAppliedDelegate (Spine.Animation clip, int layerIndex, float weight,
@@ -182,8 +184,7 @@ namespace Spine.Unity {
 				public float interruptingClipTimeAddition = 0;
 			}
 			protected ClipInfos[] layerClipInfos = new ClipInfos[0];
-
-			Animator animator;
+			
 			public Animator Animator { get { return this.animator; } }
 
 			public int MecanimLayerCount {
@@ -207,7 +208,9 @@ namespace Spine.Unity {
 			}
 
 			public void Initialize(Animator animator, SkeletonDataAsset skeletonDataAsset) {
-				this.animator = animator;
+				
+				if(this.animator == null) 
+					this.animator = animator;
 
 				previousAnimations.Clear();
 

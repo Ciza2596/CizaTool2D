@@ -4,29 +4,101 @@ namespace CizaTool2D.Converter
 {
     public class UnityAnimatorConverter : MonoBehaviour, IAnimator
     {
+    #region - Base -
+        
         [SerializeField] private Animator _animator;
 
-        public bool GetIsCurrentState(int index, string stateName) =>
-            _animator.GetCurrentAnimatorStateInfo(index).IsName(stateName);
+        public void Init(Animator animator) =>
+            _animator = animator;
 
-        public bool GetIsTagCurrentState(int index, string tagName) =>
-            _animator.GetCurrentAnimatorStateInfo(index).IsTag(tagName);
+        public bool GetIsAnimatorNull() {
+            return Utility.Utility.GetIsObjectNull(_animator, () => Debug.Log("Animator is null"));
+        }
 
-        public bool GetIsClipNotNull(string stateName) => throw new System.NotImplementedException();
+    #endregion
+
+
+    #region - GetIsCurrentState -
+
+        public bool GetIsCurrentState_Name(int layer, string stateName) {
+            if(GetIsAnimatorNull())
+                return false;
+            
+            return  _animator.GetCurrentAnimatorStateInfo(layer).IsName(stateName);
+        }
+
+        public bool GetIsCurrentState_Tag(int layer, string stateTag) {
+            if(GetIsAnimatorNull())
+                return false;
+            
+           return _animator.GetCurrentAnimatorStateInfo(layer).IsTag(stateTag);
+        }
+
+    #endregion
+
+        public float GetCurrentNormalizedTime(int layer) {
+            if(GetIsAnimatorNull())
+                return 0;
+            
+            return _animator.GetCurrentAnimatorStateInfo(layer).normalizedTime;
+        }
+
+    #region - Play -
+
+        public void Play(string stateName) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            _animator.Play(stateName);
+        }
         
-
-        public float GetCurrentNormalizeTime(int index) => _animator.GetCurrentAnimatorStateInfo(index).normalizedTime;
-
-        public void Play(int index, string name, bool loop, float timeScale) {
-            _animator.Play(name);
+        public void Play(string stateName, int layer, float timeScale) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            SetFloat($"TimeScale_{layer}", timeScale);
+            _animator.Play(stateName);
         }
 
-        public void PlayAtTime(int index, float time, string name, bool loop, float timeScale) {
-            throw new System.NotImplementedException();
+        public void Play(string stateName, int layer, float timeScale, float normalizedTime) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            SetFloat($"TimeScale_{layer}", timeScale);
+            _animator.Play(stateName, layer, normalizedTime);
         }
 
-        public void PlayAtNormalizeTime(int index, float normalizeTime, string name, bool loop, float timeScale) {
-            throw new System.NotImplementedException();
+    #endregion
+        
+    #region - SetParam -
+
+        public void SetFloat(string paramName, float value) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            _animator.SetFloat(paramName, value);
         }
+        public void SetInt(string paramName, int value) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            _animator.SetInteger(paramName, value);
+        }
+
+        public void SetBool(string paramName, bool value) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            _animator.SetBool(paramName, value);
+        }
+
+        public void SetTrigger(string paramName) {
+            if(GetIsAnimatorNull())
+                return;
+            
+            _animator.SetTrigger(paramName);
+        }
+
+    #endregion
     }
 }

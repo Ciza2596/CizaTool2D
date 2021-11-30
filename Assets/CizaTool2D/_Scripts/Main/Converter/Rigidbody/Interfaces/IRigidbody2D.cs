@@ -1,36 +1,36 @@
+using UnityEngine;
+
 namespace CizaTool2D
 {
     public interface IRigidbody2D
     {
-        // Gravity
-        
-        public float GetGravity();
-        
-        public void SetGravity(float scale);
-        
-        
-        // Velocity
-        
-        #region - GetVelcoity -
-        
-        public float GetXVelocity();
-        
-        public float GetYVelocity();
-        
-        #endregion
 
-        #region - AddVelocity -
+    #region - GravityScale -
 
-        public void AddXVelocity(float x);
+        float GetGravityScale();
         
-        public void AddYVelocity(float y);
+        void SetGravityScale(float scale);
 
-        #endregion
-
-
-        // Force
+    #endregion
         
-        public void AddForce(float x, float y);
+        
+    #region - Velcoity -
+        
+        Vector2 GetVelocity();
+
+        void SetVelocity(Vector2 velocity);
+        
+        void AddVelocity(Vector2 addVelocity);
+
+        void SetAngularVelocity(float angularVelocity);
+
+    #endregion
+
+    #region - Force -
+        
+        void AddForce(Vector2 force);
+
+    #endregion
     }
 }
 

@@ -4,14 +4,30 @@ namespace CizaTool2D
 {
     public interface IAnimator
     {
-        bool GetIsCurrentState(int    index, string currentStateName);
-        bool GetIsTagCurrentState(int index, string tagName);
+    #region - GetIsCurrentState -
+        bool GetIsCurrentState_Name(int    layer, string currentStateName);
+        bool GetIsCurrentState_Tag(int layer, string stateTag);
+    #endregion
 
-        public float GetCurrentNormalizeTime(int index);
+        float GetCurrentNormalizedTime(int layer);
 
-        public void Play(int       index, string name, bool   loop, float timeScale);
-        public void PlayAtTime(int index, float  time, string name, bool  loop, float timeScale);
+        
+    #region - Play -
+        void Play(string stateName, int layer, float timeScale);
 
-        public void PlayAtNormalizeTime(int index, float normalizeTime, string name, bool loop, float timeScale);
+        void Play(string stateName, int layer, float timeScale, float normalizedTime);
+        
+    #endregion
+
+    #region - SetParam -
+
+        void SetFloat(string paramName, float value);
+        void SetInt(string paramName, int value);
+        void SetBool(string paramName, bool value);
+        void SetTrigger(string paramName);
+
+    #endregion
+
+
     }
 }

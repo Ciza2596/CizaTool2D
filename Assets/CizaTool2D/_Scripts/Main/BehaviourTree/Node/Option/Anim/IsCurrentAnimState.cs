@@ -6,7 +6,7 @@ namespace CizaTool2D.BehaviourTree.Option.Anim
     {
         public string _animStateName;
 
-        public override bool GetBool() => _data.Animator.GetIsCurrentState(0,_animStateName);
+        public override bool GetBool() => _data.Animator.GetIsCurrentState_Name(0,_animStateName);
     }
 }
 

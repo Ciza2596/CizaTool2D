@@ -3,9 +3,9 @@ namespace CizaTool2D
 {
     public interface IRootMotion
     {
-        public void SetRootMotion(bool enable);
+        public void SetRootMotionEnable(bool enable);
         
-        public void SetPositionX(bool enable);
+        public void SetPosXEnable(bool enable);
 
     }
 }
