@@ -47,34 +47,36 @@ namespace CizaTool2D.Converter
             return _rigidbody2D.velocity;
         }
 
-        public void SetVelocity(Vector2 velocity) {
-            if(GetIsRigidbody2DNull())
-                return;
+        public IRigidbody2D SetVelocity(Vector2 velocity) {
+            if(!GetIsRigidbody2DNull())
+                _rigidbody2D.velocity = velocity;
             
-            _rigidbody2D.velocity = velocity;
+            return this;
         }
         
-        public void AddVelocity(Vector2 addVelocity) {
-            if(GetIsRigidbody2DNull())
-                return;
+        public IRigidbody2D AddVelocity(Vector2 addVelocity) {
+            if(!GetIsRigidbody2DNull())
+                _rigidbody2D.velocity += addVelocity;
             
-            _rigidbody2D.velocity += addVelocity;
+            return this;
         }
 
-        public void SetAngularVelocity(float angularVelocity) {
-            if(GetIsRigidbody2DNull())
-                return;
-            
-            _rigidbody2D.angularVelocity = angularVelocity;
+        public IRigidbody2D SetAngularVelocity(float angularVelocity) {
+            if(!GetIsRigidbody2DNull())
+                _rigidbody2D.angularVelocity = angularVelocity;
+
+            return this;
         }
 
     #endregion
 
     #region - Force -
 
-        public void AddForce(Vector2 force) {
-            
-            _rigidbody2D.AddForce(force);
+        public IRigidbody2D AddForce(Vector2 force) {
+            if(!GetIsRigidbody2DNull())
+                _rigidbody2D.AddForce(force);
+
+            return this;
         }
 
     #endregion

@@ -27,11 +27,11 @@ namespace CizaTool2D.Converter
             return _transform.position;
         }
 
-        public void SetPosition(Vector3 position) {
-            if(GetIsTransformNull())
-                return;
-
-            _transform.position = position;
+        public ITransform SetPosition(Vector3 position) {
+            if(!GetIsTransformNull())
+                _transform.position = position;
+            
+            return this;
         }
 
     #endregion
@@ -45,11 +45,11 @@ namespace CizaTool2D.Converter
             return _transform.localPosition;
         }
 
-        public void SetLocalPosition(Vector3 localPosition) {
-            if(GetIsTransformNull())
-                return;
+        public ITransform SetLocalPosition(Vector3 localPosition) {
+            if(!GetIsTransformNull())
+                _transform.localPosition = localPosition;
 
-            _transform.localPosition = localPosition;
+            return this;
         }
 
     #endregion
@@ -63,11 +63,11 @@ namespace CizaTool2D.Converter
             return _transform.eulerAngles;
         }
 
-        public void SetEulerAngles(Vector3 eulerAngles) {
-            if(GetIsTransformNull())
-                return;
-
-            _transform.eulerAngles = eulerAngles;
+        public ITransform SetEulerAngles(Vector3 eulerAngles) {
+            if(!GetIsTransformNull())
+                _transform.eulerAngles = eulerAngles;
+            
+            return this;
         }
 
     #endregion
@@ -81,11 +81,11 @@ namespace CizaTool2D.Converter
             return _transform.localScale;
         }
 
-        public void SetLocalScale(Vector3 localScale) {
-            if(GetIsTransformNull())
-                return;
+        public ITransform SetLocalScale(Vector3 localScale) {
+            if(!GetIsTransformNull())
+                _transform.localScale = localScale;
 
-            _transform.localScale = localScale;
+            return this;
         }
 
     #endregion

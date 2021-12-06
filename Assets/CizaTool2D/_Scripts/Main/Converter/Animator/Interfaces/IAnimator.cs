@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 
 namespace CizaTool2D
 {
@@ -13,18 +12,19 @@ namespace CizaTool2D
 
         
     #region - Play -
-        void Play(string stateName, int layer, float timeScale);
+        IAnimator Play(string stateName);
+        IAnimator Play(string stateName, int layer, float timeScale);
 
-        void Play(string stateName, int layer, float timeScale, float normalizedTime);
+        IAnimator Play(string stateName, int layer, float timeScale, float normalizedTime);
         
     #endregion
 
     #region - SetParam -
 
-        void SetFloat(string paramName, float value);
-        void SetInt(string paramName, int value);
-        void SetBool(string paramName, bool value);
-        void SetTrigger(string paramName);
+        IAnimator SetFloat(string   paramName, float value);
+        IAnimator SetInt(string     paramName, int   value);
+        IAnimator SetBool(string    paramName, bool  value);
+        IAnimator SetTrigger(string paramName);
 
     #endregion
 

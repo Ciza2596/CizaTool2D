@@ -69,18 +69,18 @@ namespace CizaTool2D.Converter {
         public bool GetIsCurrentState_Tag(int layer, string stateTag) => throw new System.NotImplementedException();
     
         public float GetCurrentNormalizedTime(int layer)     => throw new System.NotImplementedException();
-        public void  Play(string                  stateName) => throw new System.NotImplementedException();
+        public IAnimator  Play(string                  stateName) => throw new System.NotImplementedException();
 
-        public void Play(string stateName, int layer, float normalizedTime)                  => throw new System.NotImplementedException();
-        public void Play(string stateName, int layer, float timeScale, float normalizedTime) => throw new System.NotImplementedException();
+        public IAnimator Play(string stateName, int layer, float normalizedTime)                  => throw new System.NotImplementedException();
+        public IAnimator Play(string stateName, int layer, float timeScale, float normalizedTime) => throw new System.NotImplementedException();
 
-        public void SetFloat(string paramName, float value) => throw new System.NotImplementedException();
+        public IAnimator SetFloat(string paramName, float value) => throw new System.NotImplementedException();
 
-        public void SetInt(string paramName, int value) => throw new System.NotImplementedException();
+        public IAnimator SetInt(string paramName, int value) => throw new System.NotImplementedException();
 
-        public void SetBool(string paramName, bool value) => throw new System.NotImplementedException();
+        public IAnimator SetBool(string paramName, bool value) => throw new System.NotImplementedException();
 
-        public void SetTrigger(string paramName) => throw new System.NotImplementedException();
+        public IAnimator SetTrigger(string paramName) => throw new System.NotImplementedException();
 
         public void Play(int index, string stateName, bool loop, float timeScale) {
             //確認目前已播放想同動畫

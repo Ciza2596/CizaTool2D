@@ -45,58 +45,57 @@ namespace CizaTool2D.Converter
 
     #region - Play -
 
-        public void Play(string stateName) {
-            if(GetIsAnimatorNull())
-                return;
-            
-            _animator.Play(stateName);
+        public IAnimator Play(string stateName) {
+            if(!GetIsAnimatorNull())
+                _animator.Play(stateName);
+            return this;
         }
         
-        public void Play(string stateName, int layer, float timeScale) {
-            if(GetIsAnimatorNull())
-                return;
-            
-            SetFloat($"TimeScale_{layer}", timeScale);
-            _animator.Play(stateName);
+        public IAnimator Play(string stateName, int layer, float timeScale) {
+            if(!GetIsAnimatorNull()){
+                SetFloat($"TimeScale_{layer}", timeScale);
+                _animator.Play(stateName);
+            }
+            return this;
         }
 
-        public void Play(string stateName, int layer, float timeScale, float normalizedTime) {
-            if(GetIsAnimatorNull())
-                return;
-            
-            SetFloat($"TimeScale_{layer}", timeScale);
-            _animator.Play(stateName, layer, normalizedTime);
+        public IAnimator Play(string stateName, int layer, float timeScale, float normalizedTime) {
+            if(!GetIsAnimatorNull()){
+                SetFloat($"TimeScale_{layer}", timeScale);
+                _animator.Play(stateName, layer, normalizedTime);
+            }
+            return this;
         }
 
     #endregion
         
     #region - SetParam -
 
-        public void SetFloat(string paramName, float value) {
-            if(GetIsAnimatorNull())
-                return;
-            
-            _animator.SetFloat(paramName, value);
+        public IAnimator SetFloat(string paramName, float value) {
+            if(!GetIsAnimatorNull())
+                _animator.SetFloat(paramName, value);
+                
+            return this;
         }
-        public void SetInt(string paramName, int value) {
-            if(GetIsAnimatorNull())
-                return;
+        public IAnimator SetInt(string paramName, int value) {
+            if(!GetIsAnimatorNull())
+                _animator.SetInteger(paramName, value);
             
-            _animator.SetInteger(paramName, value);
-        }
-
-        public void SetBool(string paramName, bool value) {
-            if(GetIsAnimatorNull())
-                return;
-            
-            _animator.SetBool(paramName, value);
+            return this;
         }
 
-        public void SetTrigger(string paramName) {
-            if(GetIsAnimatorNull())
-                return;
+        public IAnimator SetBool(string paramName, bool value) {
+            if(!GetIsAnimatorNull())
+                _animator.SetBool(paramName, value);
+
+            return this;
+        }
+
+        public IAnimator SetTrigger(string paramName) {
+            if(!GetIsAnimatorNull())
+                _animator.SetTrigger(paramName);
             
-            _animator.SetTrigger(paramName);
+            return this;
         }
 
     #endregion

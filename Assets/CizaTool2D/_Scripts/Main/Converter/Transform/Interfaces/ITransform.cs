@@ -9,7 +9,7 @@ namespace CizaTool2D
 
         Vector3 GetPosition();
         
-        void SetPosition(Vector3 position);
+        ITransform SetPosition(Vector3 position);
 
     #endregion
 
@@ -17,7 +17,7 @@ namespace CizaTool2D
 
         Vector3 GetLocalPosition();
         
-        void SetLocalPosition(Vector3 localPosition);
+        ITransform SetLocalPosition(Vector3 localPosition);
 
     #endregion
         
@@ -25,7 +25,7 @@ namespace CizaTool2D
 
         Vector3 GetEulerAngles();
 
-        void SetEulerAngles(Vector3 eulerAngles);
+        ITransform SetEulerAngles(Vector3 eulerAngles);
 
     #endregion
 
@@ -33,7 +33,7 @@ namespace CizaTool2D
 
         Vector3 GetLocalScale();
 
-        void SetLocalScale(Vector3 localScale);
+        ITransform SetLocalScale(Vector3 localScale);
 
     #endregion
     }

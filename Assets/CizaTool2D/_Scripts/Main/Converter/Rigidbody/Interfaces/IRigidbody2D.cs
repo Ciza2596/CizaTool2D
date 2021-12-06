@@ -18,17 +18,17 @@ namespace CizaTool2D
         
         Vector2 GetVelocity();
 
-        void SetVelocity(Vector2 velocity);
+        IRigidbody2D SetVelocity(Vector2 velocity);
         
-        void AddVelocity(Vector2 addVelocity);
+        IRigidbody2D AddVelocity(Vector2 addVelocity);
 
-        void SetAngularVelocity(float angularVelocity);
+        IRigidbody2D SetAngularVelocity(float angularVelocity);
 
     #endregion
 
     #region - Force -
         
-        void AddForce(Vector2 force);
+        IRigidbody2D AddForce(Vector2 force);
 
     #endregion
     }
