@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: DirtyMan
   _savePath: CizaTool2D/Examples/Combiner/Prefabs
-  _body: {fileID: 83405298005205821, guid: 0263c532684a7404ea3fc704903fb9cc, type: 3}
-  _addComponentList:
-    GameObjectName: 
-    Components: []
+  _body: {fileID: 3471606924670833592, guid: 62dab05c63d542b44b8854522f6a84d4, type: 3}
+  _addComponentLists:
+  - ObjName: DirtyManBody
+    Components:
+    - Rigidbody2D
+  - ObjName: Animator
+    Components:
+    - Animator

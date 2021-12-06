@@ -29,9 +29,8 @@ namespace CizaTool2D.BehaviourTree
         private Data      _data;
         private Coroutine _parser;
 
-        private void Start() {
+        void OnEnable() {
             TreeViewInit();
-
             _parser = StartCoroutine(UpdateTreeView());
         }
 
