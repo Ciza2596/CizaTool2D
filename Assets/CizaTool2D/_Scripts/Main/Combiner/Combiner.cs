@@ -20,7 +20,7 @@ namespace CizaTool2D.Combiner
         [SerializeField] private List<AddComponentList>         _addComponentLists;
         private                  Dictionary<string, Transform> _bodyList;
 
-        public bool GetIsNull(object obj, string log) {
+        private bool GetIsNull(object obj, string log) {
             return Utility.Utility.GetIsObjectNull(obj,
                                                    () => Debug.Log(log));
         }

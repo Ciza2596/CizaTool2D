@@ -11,7 +11,7 @@ namespace CizaTool2D.Converter
         public void Init(Transform transform) =>
             _transform = transform;
 
-        public bool GetIsTransformNull() {
+        private bool GetIsTransformNull() {
             return Utility.Utility.GetIsObjectNull(_transform,
                                                    () => Debug.Log("Transform is null"));
         }

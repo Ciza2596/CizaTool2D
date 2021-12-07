@@ -12,7 +12,7 @@ namespace CizaTool2D.Converter
         public void Init(Rigidbody2D rigidbody2D) => 
             _rigidbody2D = rigidbody2D;
         
-        public bool GetIsRigidbody2DNull() {
+        private bool GetIsRigidbody2DNull() {
             return Utility.Utility.GetIsObjectNull(_rigidbody2D,
                                                    () => Debug.Log("RigidBody2D is null"));
         }

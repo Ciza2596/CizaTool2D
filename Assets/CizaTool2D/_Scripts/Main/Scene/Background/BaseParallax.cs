@@ -7,10 +7,21 @@ namespace CizaTool2D.Scene.Background
 {
     public class BaseParallax
     {
+        
+        private bool GetIsLayersNull(object obj) {
+            return Utility.Utility.GetIsObjectNull(obj,
+                                                   () => Debug.Log("Layers is null"));
+        }
+        
+        private bool GetIsLayerNull(object obj) {
+            return Utility.Utility.GetIsObjectNull(obj,
+                                                   () => Debug.Log("Layer is null"));
+        }
+        
     #region = Public Methods =
 
         public void InitLayers(List<LayerData> layers) {
-            if(layers != null)
+            if(!GetIsLayersNull(layers))
                 foreach(var layer in layers)
                     layer.CenterPos = layer.Transform.position;
         }
@@ -18,7 +29,7 @@ namespace CizaTool2D.Scene.Background
         public void UpdateLayers(Vector2         cameraPos,
                                  Vector2         sceneCenter,
                                  List<LayerData> layers) {
-            if(layers == null)
+            if(GetIsLayersNull(layers))
                 return;
 
             foreach(var layer in layers)
@@ -30,7 +41,7 @@ namespace CizaTool2D.Scene.Background
         public void UpdateLayer(Vector2   cameraPos,
                                 Vector2   sceneCenter,
                                 LayerData layer) {
-            if(layer == null)
+            if(GetIsLayerNull(layer))
                 return;
             
             var transform      = layer.Transform;

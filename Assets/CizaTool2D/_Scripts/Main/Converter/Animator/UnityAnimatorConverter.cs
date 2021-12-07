@@ -11,7 +11,7 @@ namespace CizaTool2D.Converter
         public void Init(Animator animator) =>
             _animator = animator;
 
-        public bool GetIsAnimatorNull() {
+        private bool GetIsAnimatorNull() {
             return Utility.Utility.GetIsObjectNull(_animator, () => Debug.Log("Animator is null"));
         }
 
