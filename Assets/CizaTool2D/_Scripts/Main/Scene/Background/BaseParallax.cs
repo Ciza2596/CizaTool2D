@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,8 @@ namespace CizaTool2D.Scene.Background
 {
     public class BaseParallax
     {
-        
+    #region = Private Methods =
+
         private bool GetIsLayersNull(object obj) {
             return Utility.Utility.GetIsObjectNull(obj,
                                                    () => Debug.Log("Layers is null"));
@@ -17,7 +17,9 @@ namespace CizaTool2D.Scene.Background
             return Utility.Utility.GetIsObjectNull(obj,
                                                    () => Debug.Log("Layer is null"));
         }
-        
+
+    #endregion
+
     #region = Public Methods =
 
         public void InitLayers(List<LayerData> layers) {
@@ -59,17 +61,5 @@ namespace CizaTool2D.Scene.Background
 
     #endregion
 
-    #region = Setting =
-
-        [Serializable]
-        public class LayerData
-        {
-            public Transform Transform;
-            public Vector2   MovingDistance;
-
-            [HideInInspector] public Vector3 CenterPos;
-        }
-
-    #endregion
     }
 }

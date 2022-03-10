@@ -1,0 +1,446 @@
+Zoe.png
+size:918,142
+filter:Linear,Linear
+pma:true
+Back-Abdomen
+bounds:892,119,11,9
+Back-Bangs_Left
+bounds:182,65,9,14
+rotate:90
+Back-Bangs_Right
+bounds:753,78,9,14
+Back-Chest
+bounds:812,79,11,13
+Back-Coveralls
+bounds:743,77,15,8
+rotate:90
+Back-Face
+bounds:851,7,19,22
+Back-Feet1_Left
+bounds:895,47,7,9
+rotate:90
+Back-Feet1_Right
+bounds:883,46,7,9
+rotate:90
+Back-Hand_Left
+bounds:904,28,7,8
+rotate:90
+Back-Hand_Right
+bounds:872,17,7,8
+Back-Lower-Arm _Left
+bounds:537,3,5,7
+rotate:90
+Back-Lower-Arm _Right
+bounds:546,3,5,7
+rotate:90
+Back-Lower-Leg_Left
+bounds:905,97,10,9
+Back-Lower-Leg_Right
+bounds:891,86,10,9
+Back-Ponytail
+bounds:138,2,13,28
+rotate:90
+Back-Upper-Arm Left
+bounds:126,9,6,8
+rotate:90
+Back-Upper-Arm Right
+bounds:267,2,6,8
+rotate:90
+Back-Upper-Leg_Left
+bounds:881,116,9,11
+Back-Upper-Leg_Right
+bounds:905,119,9,11
+rotate:90
+Default-Abdomen
+bounds:896,56,9,9
+Default-Bangs_Left
+bounds:857,97,8,13
+Default-Bangs_Right
+bounds:867,98,9,12
+Default-Chest
+bounds:797,79,13,13
+Default-Coveralls
+bounds:764,78,14,9
+rotate:90
+Default-Coveralls-Sleeves
+bounds:497,3,5,8
+rotate:90
+Default-Face
+bounds:726,3,20,23
+Default-Feet1_Right
+bounds:900,67,7,10
+rotate:90
+Default-Feet2_Left
+bounds:872,71,8,10
+rotate:90
+Default-Feet2_Right
+bounds:900,76,8,10
+rotate:90
+Default-Hand_Left
+bounds:872,8,7,7
+Default-Hand_Right
+bounds:905,37,8,8
+Default-Lower-Arm _Left
+bounds:881,18,7,7
+Default-Lower-Arm _Right
+bounds:346,2,6,6
+Default-Lower-Leg_Left
+bounds:876,81,9,10
+rotate:90
+Default-Lower-Leg_Right
+bounds:869,115,10,11
+Default-Ponytail_Behind
+bounds:713,76,16,28
+rotate:90
+Default-Ponytail_Front
+bounds:198,2,6,20
+rotate:90
+Default-Upper-Arm Left
+bounds:79,56,6,9
+rotate:90
+Default-Upper-Arm Right
+bounds:884,66,7,10
+rotate:90
+Default-Upper-Leg_Left
+bounds:880,129,10,11
+Default-Upper-Leg_Right
+bounds:869,128,9,12
+Default-咬牙
+bounds:614,4,7,4
+Default-喘氣1
+bounds:573,3,5,4
+rotate:90
+Default-喘氣1-2
+bounds:590,4,11,4
+Default-喘氣2
+bounds:462,3,11,5
+Default-張嘴
+bounds:462,3,11,5
+Default-微微張嘴
+bounds:391,2,6,4
+rotate:90
+Default-眉毛
+bounds:59,2,13,3
+Default-眉毛 2
+bounds:44,2,13,3
+Default-眉毛 3
+bounds:252,2,13,6
+Default-眉毛 4
+bounds:84,25,13,4
+rotate:90
+Default-眉毛 5
+bounds:447,3,13,5
+Default-眉毛 6 瞄準
+bounds:84,10,13,4
+rotate:90
+Default-眼睛
+bounds:236,2,14,6
+Default-眼睛 1 閉眼
+bounds:74,2,14,4
+Default-眼睛 1-2
+bounds:106,2,14,5
+Default-眼睛 2
+bounds:84,40,14,4
+rotate:90
+Default-眼睛 3
+bounds:122,2,14,5
+Default-眼睛 4
+bounds:415,3,14,5
+Default-眼睛 5
+bounds:220,2,14,6
+Default-眼睛 6 瞄準
+bounds:431,3,14,5
+Default-瞄準
+bounds:650,4,4,4
+Default-開心張嘴
+bounds:475,3,9,5
+Default-預設嘴巴
+bounds:656,4,4,3
+rotate:90
+Earring _Left
+bounds:661,4,3,4
+Earring _Right
+bounds:661,4,3,4
+Feet1_Left
+bounds:884,55,9,9
+Feet1_Right
+bounds:872,51,9,9
+Front-Abdomen
+bounds:892,108,11,9
+Front-Bangs_Left
+bounds:775,78,9,14
+Front-Bangs_Right
+bounds:786,78,9,14
+Front-Chest
+bounds:825,79,11,13
+Front-Coveralls
+bounds:165,65,15,9
+Front-Coveralls-Sleeves
+bounds:277,2,6,8
+rotate:90
+Front-Face
+bounds:782,5,19,23
+Front-Feet1_Left
+bounds:872,42,7,9
+rotate:90
+Front-Feet1_Right
+bounds:870,31,7,9
+Front-Hand_Left
+bounds:287,2,6,8
+rotate:90
+Front-Hand_Right
+bounds:297,2,6,8
+rotate:90
+Front-Lower-Arm _Left
+bounds:555,3,5,7
+rotate:90
+Front-Lower-Arm _Right
+bounds:564,3,5,7
+rotate:90
+Front-Lower-Leg_Left
+bounds:892,130,10,11
+rotate:90
+Front-Lower-Leg_Right
+bounds:905,130,10,11
+rotate:90
+Front-Ponytail
+bounds:168,2,13,28
+rotate:90
+Front-Upper-Arm Left
+bounds:307,2,6,8
+rotate:90
+Front-Upper-Arm Right
+bounds:317,2,6,8
+rotate:90
+Front-Upper-Leg_Left
+bounds:881,103,9,11
+Front-Upper-Leg_Right
+bounds:905,108,9,11
+rotate:90
+Lower-Leg_Left
+bounds:903,86,10,9
+Lower-Leg_Right
+bounds:888,75,10,9
+Ponytail_Behind
+bounds:857,112,10,28
+Ponytail_Front
+bounds:770,2,10,25
+Right-Abdomen
+bounds:907,57,8,9
+rotate:90
+Right-Bangs_Befind
+bounds:327,2,6,8
+rotate:90
+Right-Bangs_Befind-Deeper
+bounds:907,47,8,9
+rotate:90
+Right-Bangs_Front
+bounds:838,79,11,13
+Right-Butt
+bounds:872,62,10,7
+Right-Chest
+bounds:851,79,11,13
+Right-Coveralls
+bounds:864,83,12,10
+rotate:90
+Right-Coveralls-Sleeves
+bounds:603,4,4,9
+rotate:90
+Right-Face
+bounds:748,3,20,23
+Right-Hand_Left
+bounds:894,28,8,8
+Right-Hand_Right
+bounds:879,27,8,8
+Right-Lower-Arm _Left
+bounds:894,38,7,9
+rotate:90
+Right-Lower-Arm _Right
+bounds:883,37,7,9
+rotate:90
+Right-Upper-Arm Left
+bounds:507,3,5,8
+rotate:90
+Right-Upper-Arm Right
+bounds:517,3,5,8
+rotate:90
+Right-brow
+bounds:585,3,5,3
+rotate:90
+Right-eye
+bounds:354,2,6,6
+Right-咬牙
+bounds:397,2,6,4
+rotate:90
+Right-張嘴
+bounds:370,2,6,5
+rotate:90
+Right-微微張嘴
+bounds:579,3,5,4
+rotate:90
+Right-眉毛 3
+bounds:362,2,6,6
+Right-眉毛 4 拷貝
+bounds:623,4,7,4
+Right-眉毛 5 拷貝
+bounds:486,3,9,5
+Right-眉毛 6 瞄準
+bounds:632,4,7,4
+Right-眼睛 1 閉眼 拷貝
+bounds:403,2,6,4
+rotate:90
+Right-眼睛 1-2
+bounds:409,2,6,4
+rotate:90
+Right-眼睛 3 拷貝
+bounds:377,2,6,5
+rotate:90
+Right-眼睛 4 拷貝
+bounds:384,2,6,5
+rotate:90
+Right-眼睛 5 拷貝
+bounds:337,2,7,6
+Right-眼睛 6 瞄準 拷貝
+bounds:641,4,7,4
+Right-開心張嘴
+bounds:527,3,8,5
+Upper-Leg_Left
+bounds:892,97,9,11
+rotate:90
+Upper-Leg_Right
+bounds:878,92,9,11
+rotate:90
+近戰武器/劍
+bounds:90,2,14,60
+近戰武器/太刀
+bounds:2,2,12,52
+近戰武器/太刀殘影
+bounds:16,2,12,52
+近戰武器/巨槌
+bounds:79,64,32,76
+近戰武器/巨槌正
+bounds:113,65,24,75
+近戰武器/巨槌背
+bounds:139,65,24,75
+近戰武器/管子
+bounds:30,6,12,48
+近戰武器/長槍
+bounds:32,56,14,84
+近戰武器/長槍殘影
+bounds:2,56,28,84
+近戰武器/長槍紅巾
+bounds:48,56,14,84
+近戰武器/長槍預設
+bounds:64,56,13,84
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_0
+bounds:165,76,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_1
+bounds:198,10,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_2
+bounds:231,76,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_3
+bounds:264,10,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_4
+bounds:297,76,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_5
+bounds:330,10,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_6
+bounds:363,76,64,64
+遠程武器/Flamethrower_Flame/Flamethrower_Flame_7
+bounds:396,10,64,64
+遠程武器/Flamethrower_Flame/火焰槍
+bounds:106,9,53,18
+rotate:90
+遠程武器/Gatling/影格 1
+bounds:60,8,46,22
+rotate:90
+遠程武器/Gatling/影格 13
+bounds:60,8,46,22
+rotate:90
+遠程武器/Gatling/影格 7
+bounds:60,8,46,22
+rotate:90
+遠程武器/Gatling/影格 10
+bounds:126,17,46,22
+rotate:90
+遠程武器/Gatling/影格 11
+bounds:150,17,46,22
+rotate:90
+遠程武器/Gatling/影格 5
+bounds:150,17,46,22
+rotate:90
+遠程武器/Gatling/影格 12
+bounds:174,17,46,22
+rotate:90
+遠程武器/Gatling/影格 14
+bounds:713,94,46,22
+rotate:90
+遠程武器/Gatling/影格 15
+bounds:737,94,46,22
+rotate:90
+遠程武器/Gatling/影格 16
+bounds:726,28,46,22
+rotate:90
+遠程武器/Gatling/影格 17
+bounds:750,29,46,22
+rotate:90
+遠程武器/Gatling/影格 18
+bounds:761,94,46,22
+rotate:90
+遠程武器/Gatling/影格 21
+bounds:761,94,46,22
+rotate:90
+遠程武器/Gatling/影格 24
+bounds:761,94,46,22
+rotate:90
+遠程武器/Gatling/影格 19
+bounds:774,30,46,22
+rotate:90
+遠程武器/Gatling/影格 2
+bounds:785,94,46,22
+rotate:90
+遠程武器/Gatling/影格 20
+bounds:809,94,46,22
+rotate:90
+遠程武器/Gatling/影格 22
+bounds:798,31,46,22
+rotate:90
+遠程武器/Gatling/影格 23
+bounds:803,7,46,22
+遠程武器/Gatling/影格 3
+bounds:822,31,46,22
+rotate:90
+遠程武器/Gatling/影格 6
+bounds:822,31,46,22
+rotate:90
+遠程武器/Gatling/影格 9
+bounds:822,31,46,22
+rotate:90
+遠程武器/Gatling/影格 4
+bounds:833,94,46,22
+rotate:90
+遠程武器/Gatling/影格 8
+bounds:846,31,46,22
+rotate:90
+遠程武器/Handgun_Shooting/Handgun_0
+bounds:429,76,64,64
+遠程武器/Handgun_Shooting/Handgun_1
+bounds:462,10,64,64
+遠程武器/Handgun_Shooting/Handgun_2
+bounds:495,76,64,64
+遠程武器/Handgun_Shooting/Handgun_3
+bounds:528,10,64,64
+遠程武器/Handgun_Shooting/Handgun_4
+bounds:561,76,64,64
+遠程武器/Handgun_Shooting/Handgun_5
+bounds:594,10,64,64
+遠程武器/Handgun_Shooting/Handgun_6
+bounds:627,76,64,64
+遠程武器/Handgun_Shooting/Handgun_7
+bounds:660,10,64,64
+遠程武器/散彈槍
+bounds:44,7,47,14
+rotate:90
+遠程武器/獵槍
+bounds:693,78,62,18
+rotate:90

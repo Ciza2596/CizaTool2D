@@ -9,22 +9,22 @@ namespace CizaTool2D.Scene.Background
         
         private Transform                    _camera;
         private Vector2                      _sceneCenter;
-        private List<BaseParallax.LayerData> _layers;
+        private List<LayerData> _layers;
 
-        private BaseParallax _func;
+        private BaseParallax _base;
 
     #endregion
 
     #region = Constructor =
 
         public Parallax() {
-            _func = new BaseParallax();
+            _base = new BaseParallax();
         }
         
         public Parallax(Transform                    camera,
                         Vector2                      sceneCenter,
-                        List<BaseParallax.LayerData> layers) {
-            _func        = new BaseParallax();
+                        List<LayerData> layers) {
+            _base        = new BaseParallax();
 
             this.SetCamera(camera)
                 .SetSceneCenter(sceneCenter)
@@ -46,18 +46,18 @@ namespace CizaTool2D.Scene.Background
             return this;
         }
         
-        public Parallax SetLayers(List<BaseParallax.LayerData> layers) {
+        public Parallax SetLayers(List<LayerData> layers) {
             _layers = layers;
             return this;
         }
         
         public Parallax InitLayers() {
-            _func.InitLayers(_layers);
+            _base.InitLayers(_layers);
             return this;
         }
 
         public Parallax UpdateLayers() {
-            _func.UpdateLayers(_camera.position, 
+            _base.UpdateLayers(_camera.position, 
                                _sceneCenter,
                                _layers);
             return this;

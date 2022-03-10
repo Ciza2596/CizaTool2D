@@ -13,7 +13,7 @@ namespace CizaTool2D.Scene.Background
         [BoxGroup("CameraAndSceneCenter")]
         [SerializeField] private Vector2      _sceneCenter;
 
-        [Space] [SerializeField] [TableList] private List<BaseParallax.LayerData> _layers;
+        [Space] [SerializeField] [TableList] private List<LayerData> _layers;
 
         private Parallax _parallax;
 
