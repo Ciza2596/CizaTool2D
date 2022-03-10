@@ -56,7 +56,7 @@ namespace Spine.Unity {
 	#else
 	[ExecuteInEditMode]
 	#endif
-	[RequireComponent(typeof(MeshRenderer)), DisallowMultipleComponent]
+	//[RequireComponent(typeof(MeshRenderer)), DisallowMultipleComponent]
 	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonRenderer-Component")]
 	public class SkeletonRenderer : MonoBehaviour, ISkeletonComponent, IHasSkeletonDataAsset {
 		public SkeletonDataAsset skeletonDataAsset;
@@ -237,8 +237,8 @@ namespace Spine.Unity {
 		#endregion
 
 		#region Cached component references
-		MeshRenderer meshRenderer;
-		MeshFilter meshFilter;
+		[SerializeField] MeshRenderer meshRenderer;
+		[SerializeField] MeshFilter meshFilter;
 		#endregion
 
 		#region Skeleton
@@ -355,11 +355,20 @@ namespace Spine.Unity {
 			if (skeletonData == null) return;
 			valid = true;
 
-			meshFilter = GetComponent<MeshFilter>();
-			if (meshFilter == null)
-				meshFilter = gameObject.AddComponent<MeshFilter>();
+			var parentTransform = gameObject.transform.parent;
+			if(parentTransform != null){
+				meshFilter   = parentTransform.gameObject.GetComponent<MeshFilter>();
+				meshRenderer = meshFilter.GetComponent<MeshRenderer>();
+			}
 
-			meshRenderer = GetComponent<MeshRenderer>();
+			if(meshFilter == null){
+				meshFilter = GetComponent<MeshFilter>();
+				if (meshFilter == null)
+					meshFilter = gameObject.AddComponent<MeshFilter>();
+
+				meshRenderer = GetComponent<MeshRenderer>();
+			}
+			
 			rendererBuffers.Initialize();
 
 			skeleton = new Skeleton(skeletonData) {

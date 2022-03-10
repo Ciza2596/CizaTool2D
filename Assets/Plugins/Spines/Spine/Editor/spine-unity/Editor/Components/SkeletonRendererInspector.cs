@@ -63,7 +63,8 @@ namespace Spine.Unity.Editor {
 		const string SeparatorSlotNamesFieldName = "separatorSlotNames";
 
 		protected SerializedProperty skeletonDataAsset, initialSkinName;
-		protected SerializedProperty initialFlipX, initialFlipY;
+		protected SerializedProperty meshFilter, meshRenderer;
+		protected SerializedProperty initialFlipX,      initialFlipY;
 		protected SerializedProperty updateWhenInvisible, singleSubmesh, separatorSlotNames, clearStateOnDisable,
 			immutableTriangles, fixDrawOrder, fixPrefabOverrideViaMeshFilter;
 		protected SerializedProperty normals, tangents, zSpacing, pmaVertexColors, tintBlack; // MeshGenerator settings
@@ -140,8 +141,11 @@ namespace Spine.Unity.Editor {
 			DeleteMaterialButtonLabel = new GUIContent("Delete", "Clears unused material references and deletes the corresponding assets. Note: when switching to the corresponding Mask Interaction mode at runtime, a new material is generated on the fly.");
 
 			var so = this.serializedObject;
+			
 			skeletonDataAsset = so.FindProperty("skeletonDataAsset");
-			initialSkinName = so.FindProperty("initialSkinName");
+			initialSkinName   = so.FindProperty("initialSkinName");
+			meshFilter        = so.FindProperty("meshFilter"); 
+			meshRenderer = so.FindProperty("meshRenderer");
 			initialFlipX = so.FindProperty("initialFlipX");
 			initialFlipY = so.FindProperty("initialFlipY");
 			normals = so.FindProperty("addNormals");
@@ -295,6 +299,11 @@ namespace Spine.Unity.Editor {
 
 			}
 
+			EditorGUILayout.Space();
+
+			EditorGUILayout.PropertyField(meshFilter);
+			EditorGUILayout.PropertyField(meshRenderer);
+			
 			EditorGUILayout.Space();
 
 			// Sorting Layers
