@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcbfaa6070144a5a706438fb205fe6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 3
 --- !u!1001 &4945475498672493892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123723970763236451, guid: 3b351987fd844bc4281638e84b9e55d9, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3123723970763236477, guid: 3b351987fd844bc4281638e84b9e55d9, type: 3}
       propertyPath: m_Name
@@ -123,7 +124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6553388827850198948, guid: 09ee772e69e4cf741a26e37750ab075f, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6553388827850198949, guid: 09ee772e69e4cf741a26e37750ab075f, type: 3}
       propertyPath: m_RootOrder
@@ -237,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416151464460169299, guid: 44bd7cc45c74b5e4585d7947ca678d28, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44bd7cc45c74b5e4585d7947ca678d28, type: 3}
@@ -259,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8079199917928639018, guid: ecbdb4b206c82514bafc09a6eef2c5e1, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8079199917928639021, guid: ecbdb4b206c82514bafc09a6eef2c5e1, type: 3}
       propertyPath: m_RootOrder

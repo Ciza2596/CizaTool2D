@@ -7,16 +7,20 @@ namespace CizaTool2D.EffectPlayer.Package
     public class ParticleManager
     {
         public ParticleManager(List<ParticleSystem> particles) {
-            this.particles = particles;
+            if(particles == null || particles.Count < 1)
+                Debug.Log("Loading particles failed.");
             
+            
+            this.particles = particles;
+
             if(this.particles != null)
-                foreach(var particle in this.particles){
-                    var main = particle.main;
-                    main.duration = 1;
-                }
+                SetDuration(4);
+
+            maxParticlesNumber = particles.Count;
         }
 
         private List<ParticleSystem> particles;
+        private int                  maxParticlesNumber;
 
     #region === Get ===
         
@@ -60,7 +64,17 @@ namespace CizaTool2D.EffectPlayer.Package
     #endregion
 
     #region === Set ===
-        
+
+        public void SetDuration(float duration) {
+            if(duration < 1)
+                return;
+            
+            foreach(var particle in this.particles){
+                var main = particle.main;
+                main.duration = duration;
+            }
+        }
+
         public void SetLoop(bool loop) {
             Loop = loop;
             foreach(var particle in particles){
@@ -70,16 +84,14 @@ namespace CizaTool2D.EffectPlayer.Package
         }
 
         public void SetComponents(List<Component> components) {
-            foreach(var particle in particles)
-                particle.gameObject.SetActive(false);
+            maxParticlesNumber = components.Count;
 
-            for(int i = 0; i < components.Count; i++){
+            for(int i = 0; i < maxParticlesNumber; i++){
                 var newParticle = components[i] as ParticleSystem;
                 var particle    = particles[i];
-                if(newParticle != null && particle != null){
+                if(newParticle != null && particle != null)
                     particle.CopyParticle(newParticle);
-                    particle.gameObject.SetActive(true);
-                }
+
             }
         }
 
@@ -91,8 +103,9 @@ namespace CizaTool2D.EffectPlayer.Package
             if(!HasParticles)
                 return;
 
-            foreach(var particle in particles)
-                particle.Play();
+            for(int i = 0; i < maxParticlesNumber; i++){
+                particles[i].Play();
+            }
         }
 
         public void Stop() {

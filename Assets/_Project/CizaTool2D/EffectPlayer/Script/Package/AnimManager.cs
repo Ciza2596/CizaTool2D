@@ -8,15 +8,18 @@ namespace CizaTool2D.EffectPlayer.Package
     #region === Constroctor ===
 
         public AnimManager(List<Animator> animators) {
-            if(animators == null)
+            if(animators == null || animators.Count < 1)
                 Debug.Log("Loading animators failed.");
 
-            this.animators = animators;
+            this.animators     = animators;
+            maxAnimNumber = animators.Count;
         }
 
     #endregion
         
         private List<Animator> animators = new List<Animator>();
+        private int            maxAnimNumber;
+        
         private bool           isRestart;
         private string         stateName     = "Idle";
         private string         speedRateName = "SpeedRate";
@@ -61,15 +64,16 @@ namespace CizaTool2D.EffectPlayer.Package
 
     #region === Set ===
 
-        public void SetComponents(List<Component> components) {
-            foreach(var anim in animators)
-                anim.gameObject.SetActive(false);
+        public void SetLoop(bool loop) {
+            Loop = loop;
+        }
 
-            for(int i = 0; i < components.Count; i++){
+        public void SetComponents(List<Component> components) {
+            maxAnimNumber = components.Count;
+
+            for(int i = 0; i < maxAnimNumber; i++){
                 var newAnimator = (Animator) components[i];
                 animators[i].runtimeAnimatorController = newAnimator.runtimeAnimatorController;
-                animators[i].gameObject.SetActive(true);
-                Stop();
             }
         }
 
@@ -111,11 +115,12 @@ namespace CizaTool2D.EffectPlayer.Package
                 }
 
                 if(animators.Count == completeNumber){
-                    foreach(var animator in animators){
+                    for(int i = 0; i < maxAnimNumber; i++){
+                        var animator = animators[i];
                         animator.SetFloat(speedRateName, speedRate);
                         animator.Play(stateName, 0, 0);
                     }
-
+                    
                     IsPlaying = true;
                     isRestart  = false;
                 }

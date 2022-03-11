@@ -498,7 +498,7 @@ namespace CizaTool2D.Utility.Component
             if(count > fromCount){
                 for(int i = 0; i < count; i++){
                     if(i > fromCount - 1)
-                        textureSheetAnimation.RemoveSprite(i);  
+                        textureSheetAnimation.RemoveSprite(fromCount);  
                     else
                         textureSheetAnimation.SetSprite(i, fromTextureSheetAnimation.GetSprite(i));
                 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CizaTool2D.EffectPlayer.Package;
 using CizaTool2D.Utility.Editor;
 using Sirenix.OdinInspector;
@@ -17,7 +18,7 @@ namespace CizaTool2D.EffectPlayer
         [PropertySpace]
         [GUIColor("GetPlayButtonColor")]
         [Button]
-        public void Play() {
+        public override void Play() {
             if(!gameObject.activeSelf)
                 return;
             
@@ -29,13 +30,47 @@ namespace CizaTool2D.EffectPlayer
         [BoxGroup("Operation")]
         [GUIColor("GetNormalColor")]
         [Button]
-        public void Stop() {
+        public override void Stop() {
             animManager.Stop();
         }
         
     #endregion
+        
+    #region === Set, Get ===
+        
+        public List<Component> GetComponents() {
+            CheckAnimManager();
+            return animManager.GetComponents();
+        }
 
-    #region === Awake, Update, OnValidate ===
+    #region ===  ISubEffectPlayer ===
+
+        public override ISubEffectPlayer GetSubEffectPlayer() {
+            return this;
+        }
+
+    #endregion
+
+    #region === ISubEffectPlayerOperation ===
+
+        public override void SetSubEffectPlayer(ISubEffectPlayer isubEffectPlayer) {
+            if(isubEffectPlayer is AnimEffectPlayer animEffectPlayer)
+                animManager.SetComponents(animEffectPlayer.GetComponents());
+        }
+
+        public override void SetLoop(bool loop) {
+            animManager.SetLoop(loop);
+        }
+        
+        public override bool GetIsPlaying() {
+            return animManager.IsPlaying;
+        }
+
+    #endregion
+
+    #endregion
+
+    #region === Awake, Update ===
 
         private void Awake() {
             CheckAnimManager();
@@ -45,10 +80,6 @@ namespace CizaTool2D.EffectPlayer
         void Update() {
             animManager.Update();
         }
-        
-        private void OnValidate() {
-            CheckAnimManager();
-        }
 
     #endregion
         
@@ -57,7 +88,6 @@ namespace CizaTool2D.EffectPlayer
         private void CheckAnimManager() {
             if(animManager != null)
                 return;
-
             animManager = new AnimManager(gameObject.GetComponentsInChildren<Animator>().ToList());
         }
         
@@ -69,13 +99,6 @@ namespace CizaTool2D.EffectPlayer
                 return ButtonColor.GetPlayColor();
 
             return ButtonColor.GetNormalColor();
-        }
-
-        private Color GetUpdateSettingsButtonColor() {
-            if (animManager != null && animManager.HasAnimators)
-                return ButtonColor.GetNormalColor();
-            
-            return ButtonColor.GetUpdateSettingsColor();
         }
 
         private Color GetNormalColor() {

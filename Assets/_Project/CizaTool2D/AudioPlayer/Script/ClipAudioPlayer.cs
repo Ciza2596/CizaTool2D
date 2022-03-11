@@ -102,8 +102,8 @@ namespace CizaTool2D.AudioPlayer
     #region === ISubAudioPlayerOperation ===
 
         public override void SetSubAudioPlayer(ISubAudioPlayer isubAudioPlayer) {
-            if(isubAudioPlayer is ClipAudioPlayer audioClipPlayer)
-                _Clip = audioClipPlayer._Clip;
+            if(isubAudioPlayer is ClipAudioPlayer clipAudioPlayer)
+                _Clip = clipAudioPlayer._Clip;
         }
 
         public override void SetVolume(float volume) {

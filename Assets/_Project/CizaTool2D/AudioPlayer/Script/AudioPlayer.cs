@@ -14,14 +14,15 @@ namespace CizaTool2D.AudioPlayer
 
     #region === Operation Group ===
         
-        private ISubAudioPlayer currentSubAudioPlayer;
-        
         [PropertyOrder(15)]
         [BoxGroup("Operation")]
         [ReadOnly]
         [SerializeField]
         private ISubAudioPlayerOperation subAudioPlayerOperation;
         
+        
+        private ISubAudioPlayer currentSubAudioPlayer;
+
         [PropertyOrder(20)]
         [BoxGroup("Operation")]
         [PropertySpace]
@@ -140,7 +141,7 @@ namespace CizaTool2D.AudioPlayer
     #endregion
         
 
-    #region === Set, Set ===
+    #region === Set, Get ===
 
         public override void Init(IAudioPlayer iaudioPlayer) {
             if(iaudioPlayer is AudioPlayer audioPlayer){

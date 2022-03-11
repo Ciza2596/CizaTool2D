@@ -6,7 +6,7 @@ namespace CizaTool2D.Utility.Component
 {
     public static class SearchComponent
     {
-        public static T GetComponentInChildren<T>(this GameObject gameObject) where T : UnityEngine.Component {
+        public static T GetComponentInChildrenByCiza<T>(this GameObject gameObject) where T : UnityEngine.Component {
             var t = gameObject.GetComponent<T>();
 
             if(t != null)
@@ -19,7 +19,7 @@ namespace CizaTool2D.Utility.Component
                 return null;
 
             for(int i = 0; i < childCount; i++){
-                t = GetComponentInChildren<T>(transform.GetChild(i).gameObject);
+                t = GetComponentInChildrenByCiza<T>(transform.GetChild(i).gameObject);
                 if(t != null)
                     return t;
             }
@@ -27,7 +27,7 @@ namespace CizaTool2D.Utility.Component
             return null;
         }
 
-        public static void GetComponentsInChildren<T>(this GameObject gameObject, ref List<T> returnTs) where T : UnityEngine.Component {
+        public static void GetComponentsInChildrenByCiza<T>(this GameObject gameObject, ref List<T> returnTs) where T : UnityEngine.Component {
             T t = gameObject.GetComponent<T>();
             if(t != null)
                 returnTs.Add(t);
@@ -38,7 +38,7 @@ namespace CizaTool2D.Utility.Component
                 return;
 
             for(int i = 0; i < childCount; i++){
-                GetComponentsInChildren(transform.GetChild(i).gameObject, ref returnTs);
+                GetComponentsInChildrenByCiza(transform.GetChild(i).gameObject, ref returnTs);
             }
         }
     }

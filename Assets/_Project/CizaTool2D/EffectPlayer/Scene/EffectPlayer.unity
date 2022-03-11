@@ -191,6 +191,7 @@ Transform:
   m_Children:
   - {fileID: 1819795461062210668}
   - {fileID: 9019534878860874957}
+  - {fileID: 1405263336}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -324,6 +325,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2620700612881429239, guid: f5ed62852b6268b4b8b49f2c41a3b1ef, type: 3}
   m_PrefabInstance: {fileID: 2620700614060939129}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1405263336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+  m_PrefabInstance: {fileID: 2089210719630775383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1413120954
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,10 +437,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimEffectPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 7120029118036348919, guid: 7ba369ecf8c47234ea60aad4a127fd4e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8953267340753424026, guid: 7ba369ecf8c47234ea60aad4a127fd4e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -486,6 +488,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8953267340753424026, guid: 7ba369ecf8c47234ea60aad4a127fd4e, type: 3}
   m_PrefabInstance: {fileID: 1819795461062210667}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2089210719630775383
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 259149337}
+    m_Modifications:
+    - target: {fileID: 2089210720482052528, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_Name
+      value: EffectPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089210720482052543, guid: b3773282449334b41825e5662e8d4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3773282449334b41825e5662e8d4421, type: 3}
 --- !u!1001 &2381344166377749687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -723,10 +782,6 @@ PrefabInstance:
     - target: {fileID: 4945475499087467563, guid: fd53f2ca50a3fad4cb76a810110f08bb, type: 3}
       propertyPath: m_Name
       value: MeleeAttack1_BigMan
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945475499087467563, guid: fd53f2ca50a3fad4cb76a810110f08bb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd53f2ca50a3fad4cb76a810110f08bb, type: 3}

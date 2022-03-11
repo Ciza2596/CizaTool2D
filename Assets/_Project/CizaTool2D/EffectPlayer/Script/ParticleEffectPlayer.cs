@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CizaTool2D.EffectPlayer.Package;
 using CizaTool2D.Utility.Editor;
 using Sirenix.OdinInspector;
@@ -17,7 +18,7 @@ namespace CizaTool2D.EffectPlayer
         [PropertySpace]
         [GUIColor("GetPlayButtonColor")]
         [Button]
-        public void Play() {
+        public override void Play() {
             if(!gameObject.activeSelf)
                 return;
             
@@ -29,21 +30,74 @@ namespace CizaTool2D.EffectPlayer
         [BoxGroup("Operation")]
         [GUIColor("GetNormalColor")]
         [Button]
-        public void Stop() {
+        public override void Stop() {
             particleManager.Stop();
         }
         
     #endregion
+        
+    #region === Settings Group ===
 
-    #region === Awake, Update ===
+        [HideInInspector]
+        [SerializeField]
+        private float duration = 4;
+
+        [PropertyOrder(39)]
+        [BoxGroup("Settings")]
+        [PropertyRange(1,5)]
+        [ShowInInspector]
+        private float _Duration {
+            get => duration;
+            set {
+                duration = value;
+                if(particleManager !=null) 
+                    particleManager.SetDuration(duration);
+            }
+        }
+
+    #endregion
+        
+    #region === Set, Get ===
+
+        public List<Component> GetComponents() {
+            CheckParticleManager();
+            return particleManager.GetComponents();
+        }
+
+    #region ===  ISubEffectPlayer ===
+
+        public override ISubEffectPlayer GetSubEffectPlayer() {
+            return this;
+        }
+
+    #endregion
+
+    #region === ISubEffectPlayerOperation ===
+
+        public override void SetSubEffectPlayer(ISubEffectPlayer isubEffectPlayer) {
+            if(isubEffectPlayer is ParticleEffectPlayer particleEffectPlayer){
+                particleManager.SetComponents(particleEffectPlayer.GetComponents());
+                _Duration = particleEffectPlayer.duration;
+            }
+        }
+
+        public override void SetLoop(bool loop) {
+            particleManager.SetLoop(loop);
+        }
+        
+        public override bool GetIsPlaying() {
+            return particleManager.IsPlaying;
+        }
+
+    #endregion
+
+    #endregion
+
+    #region === Awake ===
 
         private void Awake() {
             CheckParticleManager();
             particleManager.Stop();
-        }
-        
-        private void OnValidate() {
-            CheckParticleManager();
         }
 
     #endregion
@@ -66,13 +120,6 @@ namespace CizaTool2D.EffectPlayer
                 return ButtonColor.GetPlayColor();
 
             return ButtonColor.GetNormalColor();
-        }
-
-        private Color GetUpdateSettingsButtonColor() {
-            if (particleManager != null && particleManager.HasParticles)
-                return ButtonColor.GetNormalColor();
-            
-            return ButtonColor.GetUpdateSettingsColor();
         }
 
         private Color GetNormalColor() {
