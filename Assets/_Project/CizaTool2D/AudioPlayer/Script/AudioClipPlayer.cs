@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace CizaTool2D.AudioPlayer
 {
-    public class AudioClipPlayer : MonoBehaviour
+    public class AudioClipPlayer : ISubAudioPlayerOperation
     {
-        private IAudioManager audioManager;
+        private AudioManager audioManager;
 
     #region === Operation Group ===
 
@@ -40,7 +40,7 @@ namespace CizaTool2D.AudioPlayer
         [PropertySpace]
         [GUIColor("GetPlayButtonColor")]
         [Button]
-        public void Play() {
+        public override void Play() {
             audioManager.Play();
         }
 
@@ -48,7 +48,7 @@ namespace CizaTool2D.AudioPlayer
         [BoxGroup("Operation")]
         [GUIColor("GetPauseButtonColor")]
         [Button]
-        public void Pause() {
+        public override void Pause() {
             audioManager.Pause();
         }
 
@@ -56,7 +56,7 @@ namespace CizaTool2D.AudioPlayer
         [BoxGroup("Operation")]
         [GUIColor("GetNormalColor")]
         [Button]
-        public void Stop() {
+        public override void Stop() {
             audioManager.Stop();
         }
 
@@ -64,7 +64,6 @@ namespace CizaTool2D.AudioPlayer
 
     #region === Settings Group ===
 
-        
         [HideInInspector]
         [SerializeField]
         private AudioClip clip;
@@ -84,17 +83,50 @@ namespace CizaTool2D.AudioPlayer
 
     #region === Set, Get ===
 
-        public void SetDefaultVolume(float defaultVolume) {
-             _DefaultVolume = defaultVolume;
+    #region ===  ISubAudioPlayer ===
+
+        public override ISubAudioPlayer GetSubAudioPlayer() {
+            return this;
         }
-        
-        public AudioClip GetClip() {
-            return clip;
-        }
-        
-        public float GetDefaultVolume() {
+
+        public override float GetDefaultVolume() {
             return defaultVolume;
         }
+
+        public override void SetDefaultVolume(float volume) {
+            _DefaultVolume = volume;
+        }
+
+    #endregion
+
+    #region === ISubAudioPlayerOperation ===
+
+        public override void SetSubAudioPlayer(ISubAudioPlayer isubAudioPlayer) {
+            if(isubAudioPlayer is AudioClipPlayer audioClipPlayer)
+                _Clip = audioClipPlayer._Clip;
+        }
+
+        public override void SetVolume(float volume) {
+            audioManager.SetVolume(volume);
+        }
+
+        public override void SetIsBGM(bool isBGM) {
+            audioManager.SetIsBGM(isBGM);
+        }
+
+        public override void SetLoop(bool loop) {
+            audioManager.SetLoop(loop);
+        }
+
+        public override bool GetIsPlaying() {
+            return audioManager.IsPlaying;
+        }
+
+        public override bool GetIsPausing() {
+            return audioManager.IsPausing;
+        }
+
+    #endregion
 
     #endregion
 
@@ -115,8 +147,9 @@ namespace CizaTool2D.AudioPlayer
         private void CheckHasAudioManager() {
             if(audioManager != null)
                 return;
-            
-            audioManager = new AudioManager(gameObject.GetComponentInChildren<AudioSource>(), clip,false,defaultVolume * worldVolume, false);
+
+            audioManager = new AudioManager(gameObject.GetComponentInChildren<AudioSource>(), clip, false,
+                                            defaultVolume * worldVolume, false);
         }
 
     #region == DrawButton ==

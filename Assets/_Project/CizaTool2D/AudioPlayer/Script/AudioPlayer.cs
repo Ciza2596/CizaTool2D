@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using CizaTool2D.AudioPlayer.Exposed;
-using CizaTool2D.AudioPlayer.Package;
 using CizaTool2D.Utility.Editor;
 using CizaTool2D.Utility.RandomNumber;
 using Sirenix.OdinInspector;
@@ -11,26 +10,24 @@ namespace CizaTool2D.AudioPlayer
     public class AudioPlayer : IAudioPlayer
     {
         private IRandomNumber randomNumber = new NormalRandomNumber();
-        private IAudioManager audioManager;
 
     #region === Operation Group ===
         
-        private AudioClipPlayer currentAudioClipPlayer;
+        private ISubAudioPlayer currentSubAudioPlayer;
         
         [PropertyOrder(20)]
         [BoxGroup("Operation")]
         [ReadOnly]
         [ShowInInspector]
-        private AudioClipPlayer _CurrentAudioClipPlayer {
-            get => currentAudioClipPlayer;
+        private ISubAudioPlayer CurrentSubAudioPlayer {
+            get => currentSubAudioPlayer;
             set {
-                currentAudioClipPlayer = value;
-                if(audioManager != null){
-                    audioManager.SetClip(currentAudioClipPlayer.GetClip());
-                    audioManager.SetVolume(currentAudioClipPlayer.GetDefaultVolume());
+                currentSubAudioPlayer = value;
+                if(operateSubAudioPlayerOperation != null){
+                    operateSubAudioPlayerOperation.SetSubAudioPlayer(currentSubAudioPlayer.GetSubAudioPlayer());
+                    operateSubAudioPlayerOperation.SetVolume(currentSubAudioPlayer.GetDefaultVolume() * worldVolume);
                 }
             }
-
         }
 
 
@@ -48,15 +45,15 @@ namespace CizaTool2D.AudioPlayer
         [ShowInInspector]
         private float _DefaultVolume {
             get {
-                if(_CurrentAudioClipPlayer == null)
+                if(CurrentSubAudioPlayer == null)
                     return 1;
                 
-                return _CurrentAudioClipPlayer.GetDefaultVolume();
+                return CurrentSubAudioPlayer.GetDefaultVolume();
             }
 
             set {
-                _CurrentAudioClipPlayer.SetDefaultVolume(value);
-                audioManager.SetVolume(_CurrentAudioClipPlayer.GetDefaultVolume() * worldVolume);
+                CurrentSubAudioPlayer.SetDefaultVolume(value);
+                operateSubAudioPlayerOperation.SetVolume(CurrentSubAudioPlayer.GetDefaultVolume() * worldVolume);
                 
             }
         }
@@ -67,10 +64,10 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPlayButtonColor")]
         [Button]
         public override void Play() {
-            _CurrentAudioClipPlayer = GetRandomAudioComponent(in audioClipPlayers);
+            CurrentSubAudioPlayer = GetRandomComponent(in subAudioPlayers);
             
-           if(_CurrentAudioClipPlayer != null) 
-               audioManager.Play();
+           if(CurrentSubAudioPlayer != null) 
+               operateSubAudioPlayerOperation.Play();
         }
 
         [PropertyOrder(34)]
@@ -78,7 +75,7 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPauseButtonColor")]
         [Button]
         public void Pause() {
-            audioManager.Pause();
+            operateSubAudioPlayerOperation.Pause();
         }
 
         [PropertyOrder(35)]
@@ -86,18 +83,18 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetNormalColor")]
         [Button]
         public override void Stop() {
-            audioManager.Stop();
+            operateSubAudioPlayerOperation.Stop();
         }
 
     #endregion
 
     #region === Settings Group ===
-
-        [PropertyOrder(38)]
+        
+        [PropertyOrder(37)]
         [BoxGroup("Settings")]
         [SerializeField]
-        private List<AudioClipPlayer> audioClipPlayers = new List<AudioClipPlayer>();
-
+        private ISubAudioPlayerOperation operateSubAudioPlayerOperation;
+        
         [HideInInspector]
         [SerializeField]
         private bool isBGM;
@@ -109,7 +106,7 @@ namespace CizaTool2D.AudioPlayer
             get => isBGM;
             set {
                 isBGM = value;
-                audioManager.SetIsBGM(isBGM);
+                operateSubAudioPlayerOperation.SetIsBGM(isBGM);
             }
         }
 
@@ -117,16 +114,21 @@ namespace CizaTool2D.AudioPlayer
         [SerializeField]
         private bool loop;
 
-        [PropertyOrder(50)]
+        [PropertyOrder(45)]
         [BoxGroup("Settings")]
         [ShowInInspector]
         private bool _Loop {
             get => loop;
             set {
                 loop = value;
-                audioManager.SetLoop(loop);
+                operateSubAudioPlayerOperation.SetLoop(loop);
             }
         }
+
+        [PropertyOrder(50)]
+        [BoxGroup("Settings")]
+        [SerializeField]
+        private List<ISubAudioPlayer> subAudioPlayers = new List<ISubAudioPlayer>();
 
     #endregion
         
@@ -134,8 +136,11 @@ namespace CizaTool2D.AudioPlayer
     #region === Set, Set ===
 
         public override void Init(IAudioPlayer iaudioPlayer) {
-            if(iaudioPlayer is AudioPlayer audioPlayer)
-                this.audioClipPlayers = audioPlayer.audioClipPlayers;
+            if(iaudioPlayer is AudioPlayer audioPlayer){
+                subAudioPlayers = audioPlayer.subAudioPlayers;
+                if(subAudioPlayers.Count > 0 && subAudioPlayers[0] is AudioClipPlayer)
+                    operateSubAudioPlayerOperation = GetComponentInChildren<AudioClipPlayer>();
+            }
         }
 
         public override void SetWorldVolume(float volume) {
@@ -143,44 +148,17 @@ namespace CizaTool2D.AudioPlayer
         }
 
         public override bool GetIsPlaying() {
-            return audioManager.IsPlaying;
-        }
-
-    #endregion
-
-    #region === Awake, OnValidate ===
-
-        private void Awake() {
-            CheckHasAudioManager();
-        }
-
-        private void OnValidate() {
-            CheckHasAudioManager();
+            return operateSubAudioPlayerOperation.GetIsPlaying();
         }
 
     #endregion
 
     #region === Private Methods ===
 
-    #region === CheckHasAudioManager ===
-
-        private void CheckHasAudioManager() {
-
-            if(audioManager != null || audioClipPlayers.Count < 1)
-                return;
-
-            _CurrentAudioClipPlayer = audioClipPlayers[0];
-
-            audioManager = new AudioManager(gameObject.GetComponentInChildren<AudioSource>(), _CurrentAudioClipPlayer.GetClip(), loop,
-                                            _DefaultVolume * worldVolume, isBGM);
-        }
-
-    #endregion
-        
     #region == Random ==
 
         
-        private AudioClipPlayer GetRandomAudioComponent(in List<AudioClipPlayer> audioClipPlayers) {
+        private T GetRandomComponent<T>(in List<T> audioClipPlayers) where T: Component {
 
             var count = audioClipPlayers.Count;
             if(count == 1){
@@ -203,11 +181,11 @@ namespace CizaTool2D.AudioPlayer
     #region == DrawButton ==
 
         private Color GetPlayButtonColor() {
-            if(audioManager != null){
-                if(audioManager.IsPlaying)
+            if(operateSubAudioPlayerOperation != null){
+                if(operateSubAudioPlayerOperation.GetIsPlaying())
                     return ButtonColor.GetPlayColor();
 
-                else if(audioManager.IsPausing)
+                else if(operateSubAudioPlayerOperation.GetIsPausing())
                     return ButtonColor.GetPauseColor();
             }
 
@@ -215,7 +193,7 @@ namespace CizaTool2D.AudioPlayer
         }
 
         private Color GetPauseButtonColor() {
-            if(audioManager != null && audioManager.IsPausing)
+            if(operateSubAudioPlayerOperation != null && operateSubAudioPlayerOperation.GetIsPausing())
                 return ButtonColor.GetPauseColor();
 
             return ButtonColor.GetNormalColor();

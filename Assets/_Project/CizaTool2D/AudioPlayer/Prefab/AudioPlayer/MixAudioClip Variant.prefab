@@ -53,12 +53,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 370224060300446637, guid: c911043595c2876418109ef257553f57, type: 3}
       propertyPath: m_Name
-      value: MixAudioClip
+      value: MixAudioClip Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
+      propertyPath: subAudioPlayers.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
       propertyPath: audioClipPlayers.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
+      propertyPath: subAudioPlayers.Array.data[0]
+      value: 
+      objectReference: {fileID: 6349140429730339489, guid: a73cd615bac79ed4c87ef07996f38443, type: 3}
+    - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
+      propertyPath: subAudioPlayers.Array.data[1]
+      value: 
+      objectReference: {fileID: 4427916961029960878, guid: 0d81c3fc5dcce6e4cac092ae1f553d97, type: 3}
+    - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
+      propertyPath: subAudioPlayers.Array.data[2]
+      value: 
+      objectReference: {fileID: 4175748886953590048, guid: 22f8ee3a0d9d4dc43b4277a47c1849ef, type: 3}
     - target: {fileID: 2416293961324508170, guid: c911043595c2876418109ef257553f57, type: 3}
       propertyPath: audioClipPlayers.Array.data[0]
       value: 

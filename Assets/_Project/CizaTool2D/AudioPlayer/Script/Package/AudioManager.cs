@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CizaTool2D.AudioPlayer.Package
 {
-    public class AudioManager : IAudioManager
+    public class AudioManager
     {
     #region === Constroctor ===
 
