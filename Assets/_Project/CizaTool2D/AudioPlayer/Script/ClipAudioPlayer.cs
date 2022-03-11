@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CizaTool2D.AudioPlayer
 {
-    public class AudioClipPlayer : ISubAudioPlayerOperation
+    public class ClipAudioPlayer : ISubAudioPlayerOperation
     {
         private AudioManager audioManager;
 
@@ -102,7 +102,7 @@ namespace CizaTool2D.AudioPlayer
     #region === ISubAudioPlayerOperation ===
 
         public override void SetSubAudioPlayer(ISubAudioPlayer isubAudioPlayer) {
-            if(isubAudioPlayer is AudioClipPlayer audioClipPlayer)
+            if(isubAudioPlayer is ClipAudioPlayer audioClipPlayer)
                 _Clip = audioClipPlayer._Clip;
         }
 

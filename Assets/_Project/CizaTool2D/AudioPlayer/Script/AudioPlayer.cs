@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CizaTool2D.AudioPlayer.Exposed;
+using CizaTool2D.AudioPlayer.Package;
 using CizaTool2D.Utility.Editor;
 using CizaTool2D.Utility.RandomNumber;
 using Sirenix.OdinInspector;
@@ -15,17 +16,24 @@ namespace CizaTool2D.AudioPlayer
         
         private ISubAudioPlayer currentSubAudioPlayer;
         
-        [PropertyOrder(20)]
+        [PropertyOrder(15)]
         [BoxGroup("Operation")]
         [ReadOnly]
+        [SerializeField]
+        private ISubAudioPlayerOperation subAudioPlayerOperation;
+        
+        [PropertyOrder(20)]
+        [BoxGroup("Operation")]
+        [PropertySpace]
+        [ReadOnly]
         [ShowInInspector]
-        private ISubAudioPlayer CurrentSubAudioPlayer {
+        private ISubAudioPlayer _CurrentSubAudioPlayer {
             get => currentSubAudioPlayer;
             set {
                 currentSubAudioPlayer = value;
-                if(operateSubAudioPlayerOperation != null){
-                    operateSubAudioPlayerOperation.SetSubAudioPlayer(currentSubAudioPlayer.GetSubAudioPlayer());
-                    operateSubAudioPlayerOperation.SetVolume(currentSubAudioPlayer.GetDefaultVolume() * worldVolume);
+                if(subAudioPlayerOperation != null){
+                    subAudioPlayerOperation.SetSubAudioPlayer(currentSubAudioPlayer.GetSubAudioPlayer());
+                    subAudioPlayerOperation.SetVolume(currentSubAudioPlayer.GetDefaultVolume() * worldVolume);
                 }
             }
         }
@@ -33,7 +41,6 @@ namespace CizaTool2D.AudioPlayer
 
         [PropertyOrder(26)]
         [BoxGroup("Operation")]
-        [PropertySpace]
         [ReadOnly]
         [PropertyRange(0, 1)]
         [SerializeField]
@@ -45,15 +52,15 @@ namespace CizaTool2D.AudioPlayer
         [ShowInInspector]
         private float _DefaultVolume {
             get {
-                if(CurrentSubAudioPlayer == null)
+                if(_CurrentSubAudioPlayer == null)
                     return 1;
                 
-                return CurrentSubAudioPlayer.GetDefaultVolume();
+                return _CurrentSubAudioPlayer.GetDefaultVolume();
             }
 
             set {
-                CurrentSubAudioPlayer.SetDefaultVolume(value);
-                operateSubAudioPlayerOperation.SetVolume(CurrentSubAudioPlayer.GetDefaultVolume() * worldVolume);
+                _CurrentSubAudioPlayer.SetDefaultVolume(value);
+                subAudioPlayerOperation.SetVolume(_CurrentSubAudioPlayer.GetDefaultVolume() * worldVolume);
                 
             }
         }
@@ -64,10 +71,12 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPlayButtonColor")]
         [Button]
         public override void Play() {
-            CurrentSubAudioPlayer = GetRandomComponent(in subAudioPlayers);
+            _CurrentSubAudioPlayer = GetRandomComponent(in subAudioPlayers);
+
+            CheckSubAudioPlayerOperation();
             
-           if(CurrentSubAudioPlayer != null) 
-               operateSubAudioPlayerOperation.Play();
+           if(_CurrentSubAudioPlayer != null) 
+               subAudioPlayerOperation.Play();
         }
 
         [PropertyOrder(34)]
@@ -75,7 +84,7 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPauseButtonColor")]
         [Button]
         public void Pause() {
-            operateSubAudioPlayerOperation.Pause();
+            subAudioPlayerOperation.Pause();
         }
 
         [PropertyOrder(35)]
@@ -83,18 +92,13 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetNormalColor")]
         [Button]
         public override void Stop() {
-            operateSubAudioPlayerOperation.Stop();
+            subAudioPlayerOperation.Stop();
         }
 
     #endregion
 
     #region === Settings Group ===
-        
-        [PropertyOrder(37)]
-        [BoxGroup("Settings")]
-        [SerializeField]
-        private ISubAudioPlayerOperation operateSubAudioPlayerOperation;
-        
+
         [HideInInspector]
         [SerializeField]
         private bool isBGM;
@@ -106,7 +110,7 @@ namespace CizaTool2D.AudioPlayer
             get => isBGM;
             set {
                 isBGM = value;
-                operateSubAudioPlayerOperation.SetIsBGM(isBGM);
+                subAudioPlayerOperation.SetIsBGM(isBGM);
             }
         }
 
@@ -121,7 +125,7 @@ namespace CizaTool2D.AudioPlayer
             get => loop;
             set {
                 loop = value;
-                operateSubAudioPlayerOperation.SetLoop(loop);
+                subAudioPlayerOperation.SetLoop(loop);
             }
         }
 
@@ -137,9 +141,10 @@ namespace CizaTool2D.AudioPlayer
 
         public override void Init(IAudioPlayer iaudioPlayer) {
             if(iaudioPlayer is AudioPlayer audioPlayer){
+                _IsBGM           = audioPlayer.isBGM;
+                _Loop            = audioPlayer.loop;
+                
                 subAudioPlayers = audioPlayer.subAudioPlayers;
-                if(subAudioPlayers.Count > 0 && subAudioPlayers[0] is AudioClipPlayer)
-                    operateSubAudioPlayerOperation = GetComponentInChildren<AudioClipPlayer>();
             }
         }
 
@@ -148,12 +153,22 @@ namespace CizaTool2D.AudioPlayer
         }
 
         public override bool GetIsPlaying() {
-            return operateSubAudioPlayerOperation.GetIsPlaying();
+            return subAudioPlayerOperation.GetIsPlaying();
         }
 
     #endregion
 
     #region === Private Methods ===
+        
+    #region == CheckSubAudioPlayerOperation(如果新增子類，只需改動這裡) ==
+        
+        private void CheckSubAudioPlayerOperation() {
+            if(_CurrentSubAudioPlayer is ClipAudioPlayer && !(subAudioPlayerOperation is ClipAudioPlayer)){
+                subAudioPlayerOperation = GetComponentInChildren<ClipAudioPlayer>();
+            }
+        }
+        
+    #endregion
 
     #region == Random ==
 
@@ -181,11 +196,11 @@ namespace CizaTool2D.AudioPlayer
     #region == DrawButton ==
 
         private Color GetPlayButtonColor() {
-            if(operateSubAudioPlayerOperation != null){
-                if(operateSubAudioPlayerOperation.GetIsPlaying())
+            if(subAudioPlayerOperation != null){
+                if(subAudioPlayerOperation.GetIsPlaying())
                     return ButtonColor.GetPlayColor();
 
-                else if(operateSubAudioPlayerOperation.GetIsPausing())
+                else if(subAudioPlayerOperation.GetIsPausing())
                     return ButtonColor.GetPauseColor();
             }
 
@@ -193,7 +208,7 @@ namespace CizaTool2D.AudioPlayer
         }
 
         private Color GetPauseButtonColor() {
-            if(operateSubAudioPlayerOperation != null && operateSubAudioPlayerOperation.GetIsPausing())
+            if(subAudioPlayerOperation != null && subAudioPlayerOperation.GetIsPausing())
                 return ButtonColor.GetPauseColor();
 
             return ButtonColor.GetNormalColor();

@@ -45,11 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b63141a3ebc5784d8c6c805f57b5630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subAudioPlayerOperation: {fileID: 7828831460968997907}
   worldVolume: 0.7
-  operateSubAudioPlayerOperation: {fileID: 7828831460968997907}
   isBGM: 0
   loop: 0
-  subAudioPlayers: []
+  subAudioPlayers:
+  - {fileID: 6349140429730339489, guid: a73cd615bac79ed4c87ef07996f38443, type: 3}
+  - {fileID: 4427916961029960878, guid: 0d81c3fc5dcce6e4cac092ae1f553d97, type: 3}
+  - {fileID: 4175748886953590048, guid: 22f8ee3a0d9d4dc43b4277a47c1849ef, type: 3}
 --- !u!1001 &9070756536934972632
 PrefabInstance:
   m_ObjectHideFlags: 0

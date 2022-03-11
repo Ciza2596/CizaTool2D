@@ -1,6 +1,6 @@
 ﻿namespace CizaTool2D.EffectPlayer
 {
-    public class EffectAnimPlayer
+    public class ParticleEffectPlayer
     {
         
     }

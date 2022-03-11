@@ -1,4 +1,4 @@
-﻿namespace CizaTool2D.AudioPlayer
+﻿namespace CizaTool2D.AudioPlayer.Package
 {
     public abstract class ISubAudioPlayerOperation: ISubAudioPlayer
     {
