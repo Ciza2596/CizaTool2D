@@ -1,6 +1,6 @@
 ﻿namespace CizaTool2D.EffectPlayer.Package
 {
-    public class ParitcleManger
+    public abstract class ISubEffectPlayerOperation: ISubEffectPlayer
     {
         
     }

@@ -31,9 +31,14 @@ namespace CizaTool2D.AudioPlayer
             get => currentSubAudioPlayer;
             set {
                 currentSubAudioPlayer = value;
+                
+                CheckSubAudioPlayerOperation();
+                
                 if(subAudioPlayerOperation != null){
                     subAudioPlayerOperation.SetSubAudioPlayer(currentSubAudioPlayer.GetSubAudioPlayer());
                     subAudioPlayerOperation.SetVolume(currentSubAudioPlayer.GetDefaultVolume() * worldVolume);
+                    _IsBGM = isBGM;
+                    _Loop = loop;
                 }
             }
         }
@@ -73,9 +78,7 @@ namespace CizaTool2D.AudioPlayer
         public override void Play() {
             _CurrentSubAudioPlayer = GetRandomComponent(in subAudioPlayers);
 
-            CheckSubAudioPlayerOperation();
-            
-           if(_CurrentSubAudioPlayer != null) 
+            if(_CurrentSubAudioPlayer != null) 
                subAudioPlayerOperation.Play();
         }
 
@@ -141,8 +144,8 @@ namespace CizaTool2D.AudioPlayer
 
         public override void Init(IAudioPlayer iaudioPlayer) {
             if(iaudioPlayer is AudioPlayer audioPlayer){
-                _IsBGM           = audioPlayer.isBGM;
-                _Loop            = audioPlayer.loop;
+                isBGM           = audioPlayer.isBGM;
+                loop            = audioPlayer.loop;
                 
                 subAudioPlayers = audioPlayer.subAudioPlayers;
             }

@@ -1,3 +1,16 @@
 {
-	"name": "CizaTool2D_EffectPlayer_Package"
+    "name": "CizaTool2D_EffectPlayer_Package",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9bf5f8779e1a9c740a9d1fc9b78620a0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

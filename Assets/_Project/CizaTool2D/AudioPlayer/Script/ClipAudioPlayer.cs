@@ -7,7 +7,7 @@ namespace CizaTool2D.AudioPlayer
 {
     public class ClipAudioPlayer : ISubAudioPlayerOperation
     {
-        private AudioManager audioManager;
+        private ClipManager clipManager;
 
     #region === Operation Group ===
 
@@ -31,7 +31,7 @@ namespace CizaTool2D.AudioPlayer
 
             set {
                 defaultVolume = value;
-                audioManager.SetVolume(defaultVolume * worldVolume);
+                clipManager.SetVolume(defaultVolume * worldVolume);
             }
         }
 
@@ -41,7 +41,7 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPlayButtonColor")]
         [Button]
         public override void Play() {
-            audioManager.Play();
+            clipManager.Play();
         }
 
         [PropertyOrder(34)]
@@ -49,7 +49,7 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetPauseButtonColor")]
         [Button]
         public override void Pause() {
-            audioManager.Pause();
+            clipManager.Pause();
         }
 
         [PropertyOrder(35)]
@@ -57,7 +57,7 @@ namespace CizaTool2D.AudioPlayer
         [GUIColor("GetNormalColor")]
         [Button]
         public override void Stop() {
-            audioManager.Stop();
+            clipManager.Stop();
         }
 
     #endregion
@@ -75,7 +75,7 @@ namespace CizaTool2D.AudioPlayer
             get => clip;
             set {
                 clip = value;
-                audioManager.SetClip(clip);
+                clipManager.SetClip(clip);
             }
         }
 
@@ -107,23 +107,23 @@ namespace CizaTool2D.AudioPlayer
         }
 
         public override void SetVolume(float volume) {
-            audioManager.SetVolume(volume);
+            clipManager.SetVolume(volume);
         }
 
         public override void SetIsBGM(bool isBGM) {
-            audioManager.SetIsBGM(isBGM);
+            clipManager.SetIsBGM(isBGM);
         }
 
         public override void SetLoop(bool loop) {
-            audioManager.SetLoop(loop);
+            clipManager.SetLoop(loop);
         }
 
         public override bool GetIsPlaying() {
-            return audioManager.IsPlaying;
+            return clipManager.IsPlaying;
         }
 
         public override bool GetIsPausing() {
-            return audioManager.IsPausing;
+            return clipManager.IsPausing;
         }
 
     #endregion
@@ -133,33 +133,33 @@ namespace CizaTool2D.AudioPlayer
     #region === Awake, OnValidate ===
 
         private void Awake() {
-            CheckHasAudioManager();
+            CheckAudioManager();
         }
 
         private void OnValidate() {
-            CheckHasAudioManager();
+            CheckAudioManager();
         }
 
     #endregion
 
     #region === Private Methods ===
 
-        private void CheckHasAudioManager() {
-            if(audioManager != null)
+        private void CheckAudioManager() {
+            if(clipManager != null)
                 return;
 
-            audioManager = new AudioManager(gameObject.GetComponentInChildren<AudioSource>(), clip, false,
+            clipManager = new ClipManager(gameObject.GetComponentInChildren<AudioSource>(), clip, false,
                                             defaultVolume * worldVolume, false);
         }
 
     #region == DrawButton ==
 
         private Color GetPlayButtonColor() {
-            if(audioManager != null){
-                if(audioManager.IsPlaying)
+            if(clipManager != null){
+                if(clipManager.IsPlaying)
                     return ButtonColor.GetPlayColor();
 
-                else if(audioManager.IsPausing)
+                else if(clipManager.IsPausing)
                     return ButtonColor.GetPauseColor();
             }
 
@@ -167,7 +167,7 @@ namespace CizaTool2D.AudioPlayer
         }
 
         private Color GetPauseButtonColor() {
-            if(audioManager != null && audioManager.IsPausing)
+            if(clipManager != null && clipManager.IsPausing)
                 return ButtonColor.GetPauseColor();
 
             return ButtonColor.GetNormalColor();

@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace CizaTool2D.AudioPlayer.Package
 {
-    public class AudioManager
+    public class ClipManager
     {
     #region === Constroctor ===
 
-        public AudioManager(AudioSource audioSource,
+        public ClipManager(AudioSource audioSource,
                             AudioClip   currentClip,
                             bool        loop,
                             float       volume,
