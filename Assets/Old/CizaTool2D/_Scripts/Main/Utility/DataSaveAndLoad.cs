@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CizaTool2D.Utility
 {
     public class DataSaveAndLoad : MonoBehaviour
-    {
+    {      /*
     #region Json
 
         public static void Save(object data, string path) {
@@ -87,8 +87,8 @@ namespace CizaTool2D.Utility
                 Directory.CreateDirectory (Path.GetDirectoryName (path));
                 return default;
             }
-        }
+        } 
 
-    #endregion
+    #endregion */
     }
 }

@@ -1,0 +1,18 @@
+{
+    "name": "CizaTool2D_AudioPlayer",
+    "rootNamespace": "",
+    "references": [
+        "CizaTool2D_AudioPlayer_Package",
+        "CizaTool2D_Utility",
+        "CizaTool2D_AudioPlayer_Exposed"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
