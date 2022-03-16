@@ -48,11 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subEffectPlayerOperation: {fileID: 0}
   loop: 0
-  subEffectPlayers:
-  - {fileID: 6670144619501959586, guid: 45bfd647a30978c41b06d92d9a2be413, type: 3}
-  - {fileID: 2620700612881429238, guid: f5ed62852b6268b4b8b49f2c41a3b1ef, type: 3}
-  - {fileID: 4945475499087467557, guid: fd53f2ca50a3fad4cb76a810110f08bb, type: 3}
-  - {fileID: 8171471657789648244, guid: efd084dd1216762469fab64a2e92c857, type: 3}
+  subEffectPlayers: []
 --- !u!1001 &2089210719312691738
 PrefabInstance:
   m_ObjectHideFlags: 0

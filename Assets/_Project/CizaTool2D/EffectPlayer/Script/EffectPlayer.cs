@@ -3,6 +3,7 @@ using CizaTool2D.EffectPlayer.Exposed;
 using CizaTool2D.EffectPlayer.Package;
 using CizaTool2D.Utility.Editor;
 using CizaTool2D.Utility.RandomNumber;
+using CizaTool2D.Utility.Component;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -49,7 +50,7 @@ namespace CizaTool2D.EffectPlayer
         [GUIColor("GetPlayButtonColor")]
         [Button]
         public override void Play() {
-            _CurrentSubEffectPlayer = GetRandomComponent(in subEffectPlayers);
+            _CurrentSubEffectPlayer = subEffectPlayers.GetRandomComponent(randomNumber);
 
             if(_CurrentSubEffectPlayer != null) 
                 subEffectPlayerOperation.Play();
@@ -110,35 +111,19 @@ namespace CizaTool2D.EffectPlayer
 
     #region === Private Methods ===
 
-    #region == CheckSubEffectPlayerOperation(如果新增子類，只需改動這裡) ==
+    #region == CheckSubEffectPlayerOperation ==
 
         private void CheckSubAudioPlayerOperation() {
             Stop();
-            if(_CurrentSubEffectPlayer is AnimEffectPlayer && !(subEffectPlayerOperation is AnimEffectPlayer)){
-                subEffectPlayerOperation = GetComponentInChildren<AnimEffectPlayer>();
-            }else if(_CurrentSubEffectPlayer is ParticleEffectPlayer && !(subEffectPlayerOperation is ParticleEffectPlayer)){
-                subEffectPlayerOperation = GetComponentInChildren<ParticleEffectPlayer>();
-            }
-        }
-
-    #endregion
-
-    #region == Random ==
-
-        private T GetRandomComponent<T>(in List<T> audioClipPlayers) where T : Component {
-            var count = audioClipPlayers.Count;
-            if(count == 1){
-                return audioClipPlayers[0];
-            }
-            else if(count == 2){
-                return audioClipPlayers[randomNumber.GetRandomNumberForTwo()];
-            }
-            else if(count >= 3){
-                return audioClipPlayers[randomNumber.GetRandomNumberForMoreThree(count)];
-            }
-            else{
-                return null;
-            }
+            if(_CurrentSubEffectPlayer == null)
+                return;
+            
+            if(subEffectPlayerOperation == null)
+                subEffectPlayerOperation = GetComponentInChildren<ISubEffectPlayerOperation>();
+            
+            var currentType = _CurrentSubEffectPlayer.GetType();
+            if(currentType != subEffectPlayerOperation.GetType())
+                subEffectPlayerOperation = (ISubEffectPlayerOperation)GetComponentInChildren(currentType);
         }
 
     #endregion

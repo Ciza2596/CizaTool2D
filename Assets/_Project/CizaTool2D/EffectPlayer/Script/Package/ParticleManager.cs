@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CizaTool2D.Utility.Component;
 using UnityEngine;
 
 namespace CizaTool2D.EffectPlayer.Package
@@ -89,9 +88,10 @@ namespace CizaTool2D.EffectPlayer.Package
             for(int i = 0; i < maxParticlesNumber; i++){
                 var newParticle = components[i] as ParticleSystem;
                 var particle    = particles[i];
-                if(newParticle != null && particle != null)
-                    particle.CopyParticle(newParticle);
-
+                if(newParticle != null && particle != null){
+                    UnityEditorInternal.ComponentUtility.CopyComponent(newParticle);
+                    UnityEditorInternal.ComponentUtility.PasteComponentValues(particle);
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
+using CizaTool2D.Utility.RandomNumber;
 
 namespace CizaTool2D.Utility.Component
 {
@@ -31,8 +32,25 @@ namespace CizaTool2D.Utility.Component
 
             return comp as T;
         }
+        
+    #region == Random ==
+        
+        public static T GetRandomComponent<T>(this List<T> audioClipPlayers, IRandomNumber randomNumber) where T : UnityEngine.Component {
+            var count = audioClipPlayers.Count;
+            if(count == 1){
+                return audioClipPlayers[0];
+            }
+            else if(count == 2){
+                return audioClipPlayers[randomNumber.GetRandomNumberForTwo()];
+            }
+            else if(count >= 3){
+                return audioClipPlayers[randomNumber.GetRandomNumberForMoreThree(count)];
+            }
+            else{
+                return null;
+            }
+        }
+        
+    #endregion
     }
-    
-    
-    
 }
